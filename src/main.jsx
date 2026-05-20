@@ -108,8 +108,148 @@ const selectedWorks = [
   },
 ];
 
+const teamMembers = [
+  {
+    name: "Minh Tran",
+    role: "Founding Partner",
+    focus: "Concept & Design Direction",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    name: "Linh Nguyen",
+    role: "Partner",
+    focus: "Interior & Landscape",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    name: "An Hoang",
+    role: "Project Architect",
+    focus: "Cultural & Commercial",
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    name: "Mai Pham",
+    role: "Senior Architect",
+    focus: "Residential Projects",
+    image:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85",
+  },
+];
+
+function StudioPage() {
+  return (
+    <>
+      <section className="studio-intro">
+        <p>About</p>
+        <h1>The Studio.</h1>
+        <p>
+          Thành lập tại Việt Nam, CHAM là studio kiến trúc và nội thất tạo nên
+          những không gian tôn trọng nơi chốn, khí hậu và nhịp sống của con người.
+        </p>
+      </section>
+
+      <section className="studio-approach">
+        <div className="studio-image">
+          <img
+            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=90"
+            alt="Architecture studio workspace"
+          />
+        </div>
+        <div className="studio-approach-copy">
+          <p>Approach</p>
+          <p>
+            Chúng tôi thiết kế từ bên trong ra ngoài — hiểu cách con người di chuyển,
+            tụ họp và nghỉ ngơi trước khi đường nét đầu tiên xuất hiện.
+          </p>
+          <p>
+            Kiến trúc không chỉ là tạo vật thể. Đó là kiến tạo một trải nghiệm sống
+            có nhịp điệu, ánh sáng và sự thuộc về.
+          </p>
+          <p>
+            Mỗi dự án bắt đầu bằng lắng nghe: khu đất, ánh sáng, vật liệu hiện có
+            và đời sống sẽ hiện diện trong không gian.
+          </p>
+        </div>
+      </section>
+
+      <section className="statement studio-statement">
+        <p>Philosophy</p>
+        <blockquote>
+          “Chúng tôi không xây biểu tượng.
+          Chúng tôi kiến tạo <em>ngưỡng chạm</em> — khoảng giữa của đến,
+          dừng lại và thuộc về.”
+        </blockquote>
+        <cite>CHAM GROUP, tuyên ngôn sáng lập</cite>
+      </section>
+
+      <section className="studio-services">
+        <div className="studio-section-heading">
+          <p>Services</p>
+          <h2>What we do.</h2>
+        </div>
+        <div className="studio-service-grid">
+          <article>
+            <h3>Architecture</h3>
+            <p>Từ ý niệm đến hoàn thiện — nhà ở, văn hóa và thương mại được thiết kế với độ chính xác và cảm xúc.</p>
+          </article>
+          <article>
+            <h3>Interior Design</h3>
+            <p>Câu chuyện không gian mở ra qua vật liệu, ánh sáng và tỷ lệ. Mỗi bề mặt đều được cân nhắc.</p>
+          </article>
+          <article>
+            <h3>Landscape</h3>
+            <p>Tư duy ở tầng mặt đất: sân trong, vườn, ngưỡng chuyển tiếp và khoảng thở giữa các khối nhà.</p>
+          </article>
+          <article>
+            <h3>Hospitality Concept</h3>
+            <p>Định hình trải nghiệm lưu trú, nhịp vận hành và ký ức không gian cho điểm đến.</p>
+          </article>
+        </div>
+        <div className="studio-stats">
+          <span><strong>18</strong>Dự án</span>
+          <span><strong>21</strong>Giải thưởng</span>
+          <span><strong>12</strong>Năm</span>
+          <span><strong>05</strong>Thành phố</span>
+        </div>
+      </section>
+
+      <section className="studio-team">
+        <div className="studio-section-heading">
+          <p>Team</p>
+          <h2>The people behind the work.</h2>
+        </div>
+        <div className="team-grid">
+          {teamMembers.map((member) => (
+            <article key={member.name}>
+              <img src={member.image} alt={member.name} />
+              <div>
+                <h3>{member.name}</h3>
+                <p>{member.role}</p>
+                <span>{member.focus}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <footer className="footer-bottom studio-bottom">
+        <span>CHAM GROUP © 2026</span>
+        <span>Architecture & Interior Design</span>
+        <span>
+          <a href="/">Index</a>
+          <a href="/#contact">Contact</a>
+        </span>
+      </footer>
+    </>
+  );
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const isStudioPage = window.location.pathname === "/studio";
 
   useEffect(() => {
     const updateFeaturedText = () => {
@@ -201,16 +341,16 @@ function App() {
     <main>
       <div className="cursor-dot" aria-hidden="true" />
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="CHAM GROUP home">
+        <a className="brand" href="/" aria-label="CHAM GROUP home">
           <span>CHAM</span>
           <small>GROUP</small>
         </a>
         <nav className="nav-links" aria-label="Primary navigation">
-          <a href="#top">Index</a>
-          <a href="#studio">Studio</a>
-          <a href="#process">Process</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a className={!isStudioPage ? "active" : ""} href="/">Index</a>
+          <a className={isStudioPage ? "active" : ""} href="/studio">Studio</a>
+          <a href="/#process">Process</a>
+          <a href="/#projects">Projects</a>
+          <a href="/#contact">Contact</a>
         </nav>
         <button
           className="menu-button"
@@ -240,11 +380,11 @@ function App() {
           Close
         </button>
         <div className="menu-links">
-          <a href="#top" onClick={() => setMenuOpen(false)}>Index</a>
-          <a href="#studio" onClick={() => setMenuOpen(false)}>Studio</a>
-          <a href="#process" onClick={() => setMenuOpen(false)}>Process</a>
-          <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a href="/" onClick={() => setMenuOpen(false)}>Index</a>
+          <a href="/studio" onClick={() => setMenuOpen(false)}>Studio</a>
+          <a href="/#process" onClick={() => setMenuOpen(false)}>Process</a>
+          <a href="/#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+          <a href="/#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </div>
         <div className="menu-footer">
           <span>CHAM GROUP © 2026</span>
@@ -252,6 +392,10 @@ function App() {
         </div>
       </nav>
 
+      {isStudioPage ? (
+        <StudioPage />
+      ) : (
+        <>
       <section className="hero" id="top">
         <div className="hero-copy">
           <div>
@@ -431,6 +575,8 @@ function App() {
           </span>
         </section>
       </footer>
+        </>
+      )}
     </main>
   );
 }
