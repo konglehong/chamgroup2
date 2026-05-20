@@ -78,28 +78,26 @@ function App() {
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-image">
-          <img src={projects[0].image} alt="CHAM Group hospitality destination" />
-          <a className="hero-caption" href="#featured">
-            <span>Cham House</span>
-            <span>Residential</span>
-            <span>2026</span>
-          </a>
-        </div>
-        <div className="hero-kicker">Architecture & Interior · Est. 2026</div>
-        <h1>
-          Space
-          <span>as</span>
-          Practice.
-        </h1>
-        <div className="hero-bottom">
+        <div className="hero-copy">
+          <div>
+            <div className="hero-kicker">Architecture & Interior · Est. 2026</div>
+            <h1>
+              Space
+              <span>as</span>
+              Practice.
+            </h1>
+          </div>
           <a className="text-link" href="#projects">
             All projects <ArrowUpRight size={18} />
           </a>
-          <p>
-            CHAM GROUP shapes architecture, interiors, and destinations with a quiet,
-            material-led approach rooted in climate, craft, and belonging.
-          </p>
+        </div>
+        <div className="hero-image">
+          <img src={projects[0].image} alt="CHAM Group hospitality destination" />
+          <a className="hero-caption" href="#featured">
+            <span>Koan House</span>
+            <span>Residential</span>
+            <span>2026</span>
+          </a>
         </div>
       </section>
 
