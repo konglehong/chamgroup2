@@ -86,6 +86,28 @@ const featuredProjects = [
   },
 ];
 
+const selectedWorks = [
+  {
+    title: "Koan House",
+    meta: "Tokyo, JP / 2026",
+    largeImage: projects[0].image,
+    smallImage: projects[1].image,
+  },
+  {
+    title: "Atelier Courtyard",
+    meta: "Da Nang, VN / 2025",
+    largeImage: projects[3].image,
+    smallImage: projects[4].image,
+    reverse: true,
+  },
+  {
+    title: "River Gallery",
+    meta: "Ho Chi Minh City, VN / 2025",
+    largeImage: projects[2].image,
+    smallImage: projects[0].image,
+  },
+];
+
 function App() {
   useEffect(() => {
     const updateFeaturedText = () => {
@@ -230,14 +252,24 @@ function App() {
 
       <section className="selected">
         <h2>Selected Works</h2>
-        <div>
-          {projects.map((project) => (
-            <a href="#featured" key={project.name}>
-              <span>{project.name}</span>
-              <small>
-                {project.place} / {project.year}
-              </small>
-            </a>
+        <div className="selected-gallery">
+          {selectedWorks.map((work) => (
+            <article className={`work-pair ${work.reverse ? "work-pair-reverse" : ""}`} key={work.title}>
+              <a className="work-tile work-tile-large" href="#featured">
+                <img src={work.largeImage} alt={work.title} />
+                <span className="work-caption">
+                  <strong>{work.title}</strong>
+                  <small>{work.meta}</small>
+                </span>
+              </a>
+              <a className="work-tile work-tile-small" href="#featured">
+                <img src={work.smallImage} alt={`${work.title} detail`} />
+                <span className="work-caption">
+                  <strong>{work.title}</strong>
+                  <small>{work.meta}</small>
+                </span>
+              </a>
+            </article>
           ))}
         </div>
       </section>
