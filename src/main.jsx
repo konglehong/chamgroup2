@@ -52,10 +52,10 @@ const projects = [
 ];
 
 const process = [
-  ["01", "Listen", "Read the land, the brief, the guest journey, and the communities around every destination."],
-  ["02", "Frame", "Turn market insight and brand ambition into a clear spatial and operational concept."],
-  ["03", "Craft", "Shape architecture, interiors, landscape, and service details as one coherent experience."],
-  ["04", "Realise", "Stay close through delivery so the finished place carries the same intent as the first sketch."],
+  ["01", "Lắng nghe", "Bắt đầu bằng sự tĩnh lặng: đọc khu đất, bản brief và nhịp sống sẽ hiện diện trong không gian."],
+  ["02", "Phác thảo", "Trước khi đi vào kỹ thuật số, ý tưởng được thử bằng mô hình, nét vẽ tay và những lớp vật liệu."],
+  ["03", "Tinh chỉnh", "Từng chi tiết được đặt câu hỏi: ánh sáng, tỷ lệ, chất liệu và cảm giác qua nhiều thời điểm."],
+  ["04", "Hiện thực", "Chúng tôi theo sát công trường đến khi công trình hoàn thiện với cảm giác đúng như nó phải có."],
 ];
 
 const featuredProjects = [
@@ -215,7 +215,7 @@ function App() {
       <section className="process" id="process">
         <div className="process-heading">
           <p>Process</p>
-          <h2>From land reading to living destination.</h2>
+          <h2>Từ lắng nghe đến đời sống.</h2>
         </div>
         <div className="process-grid">
           {process.map(([step, title, body]) => (
