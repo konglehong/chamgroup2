@@ -1,0 +1,6 @@
+name = "cham-group-home"
+compatibility_date = "2026-05-20"
+pages_build_output_dir = "dist"
+
+[vars]
+PROJECT_NAME = "CHAM GROUP"
