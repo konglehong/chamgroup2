@@ -274,37 +274,72 @@ function App() {
         </div>
       </section>
 
-      <section className="recognition">
-        <h2>Signals</h2>
-        <article>
-          <p>Hospitality pipeline across Vietnam's most resilient leisure corridors.</p>
-          <span>2026</span>
-        </article>
-        <article>
-          <p>Mixed-use concepts shaped around climate, culture, and long-stay value.</p>
-          <span>2025</span>
-        </article>
-        <article>
-          <p>Design partnerships spanning architecture, interiors, landscape, and operations.</p>
-          <span>2024</span>
-        </article>
-      </section>
+      <footer className="site-close" id="contact">
+        <section className="press-block">
+          <h2>Press & Recognition</h2>
+          <article>
+            <p>“CHAM mở ra một ngôn ngữ kiến trúc điềm tĩnh — nơi công trình phục vụ cơ thể trước khi chạm đến thị giác.”</p>
+            <span>Elle Decoration<br />2026</span>
+          </article>
+          <article>
+            <p>“Koan House là một trong những dự án nhà ở được cân nhắc kỹ lưỡng nhất trong năm.”</p>
+            <span>ArchDaily<br />2025</span>
+          </article>
+          <article>
+            <p>“Cách họ làm việc chứng minh kiến trúc Việt Nam có thể vừa sâu rễ, vừa đương đại.”</p>
+            <span>Design Anthology<br />2024</span>
+          </article>
+        </section>
 
-      <footer className="footer" id="contact">
-        <div>
-          <h2>CHAM GROUP</h2>
-          <p>Architecture, interiors, landscape, and cultural destinations.</p>
-        </div>
-        <div className="metrics">
-          <span><strong>08</strong> Projects</span>
-          <span><strong>04</strong> Cities</span>
-          <span><strong>03</strong> Sectors</span>
-        </div>
-        <address>
-          <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
-          <a href="tel:+842800000000">+84 28 0000 0000</a>
-          <span>Ho Chi Minh City, Vietnam</span>
-        </address>
+        <section className="close-grid">
+          <div className="close-cell close-process">
+            <h2>Process</h2>
+            <p>Chúng tôi thiết kế từ bên trong ra ngoài — bắt đầu bằng cách con người di chuyển, tụ họp và nghỉ ngơi.</p>
+            <p>Kiến trúc không chỉ là tạo vật thể. Đó là kiến tạo trải nghiệm sống.</p>
+          </div>
+
+          <div className="close-cell close-services">
+            <h2>Services</h2>
+            <ul>
+              <li>Architecture</li>
+              <li>Interior Design</li>
+              <li>Landscape</li>
+              <li>Hospitality Concept</li>
+            </ul>
+          </div>
+
+          <div className="close-cell close-recognition">
+            <h2>Recognition</h2>
+            <div className="stat-grid">
+              <span><strong>18</strong>Dự án</span>
+              <span><strong>12</strong>Năm</span>
+              <span><strong>21</strong>Giải thưởng</span>
+              <span><strong>05</strong>Thành phố</span>
+            </div>
+          </div>
+
+          <div className="close-cell close-contact">
+            <h2>Contact</h2>
+            <address>
+              <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
+              <a href="tel:+842800000000">+84 28 0000 0000</a>
+              <span>Quận 1, TP. Hồ Chí Minh</span>
+            </address>
+            <a className="new-enquiry" href="mailto:hello@chamgroup.vn">
+              New enquiries <MoveRight size={18} />
+            </a>
+          </div>
+        </section>
+
+        <section className="footer-bottom">
+          <span>CHAM GROUP © 2026</span>
+          <span>Architecture & Interior Design</span>
+          <span>
+            <a href="#top">X</a>
+            <a href="#top">LinkedIn</a>
+            <a href="#top">Behance</a>
+          </span>
+        </section>
       </footer>
     </main>
   );
