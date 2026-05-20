@@ -432,6 +432,42 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const revealSelectors = [
+      ".hero-copy",
+      ".hero-image",
+      ".project-index",
+      ".project-row",
+      ".feature-media img",
+      ".feature-copy .outline-link",
+      ".statement > p",
+      ".statement blockquote",
+      ".statement cite",
+      ".process-heading",
+      ".process-grid article",
+      ".selected h2",
+      ".work-tile",
+      ".press-block h2",
+      ".press-block article",
+      ".close-cell",
+      ".footer-bottom",
+      ".studio-intro > *",
+      ".studio-image",
+      ".studio-approach-copy",
+      ".studio-section-heading",
+      ".studio-service-grid article",
+      ".studio-stats span",
+      ".team-grid article",
+      ".process-page-intro",
+      ".process-hero-image",
+      ".process-step-media img",
+      ".process-step-media p",
+      ".ready-section",
+    ];
+
+    document.querySelectorAll(revealSelectors.join(",")).forEach((element) => {
+      element.classList.add("reveal-up");
+    });
+
     const elements = document.querySelectorAll(".reveal-up");
     if (!elements.length) return;
 
