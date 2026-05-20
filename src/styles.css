@@ -61,12 +61,8 @@ button {
 }
 
 @media (min-width: 841px) {
-  .site-header {
-    display: none;
-  }
-
   .hero {
-    height: 100vh;
+    height: calc(100vh - 64px);
   }
 }
 
@@ -90,13 +86,21 @@ button {
 
 .nav-links {
   display: flex;
-  gap: clamp(18px, 3vw, 46px);
+  gap: 24px;
   font-size: 12px;
+  justify-self: center;
   text-transform: uppercase;
 }
 
 .nav-links a {
+  border-bottom: 1px solid transparent;
   padding: 6px 0;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a:first-child {
+  border-bottom-color: currentColor;
 }
 
 .menu-button {
@@ -104,7 +108,7 @@ button {
   background: transparent;
   border: 1px solid var(--line);
   border-radius: 999px;
-  display: inline-flex;
+  display: none;
   height: 38px;
   justify-content: center;
   justify-self: end;
@@ -117,7 +121,7 @@ button {
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--ink);
-  display: inline-flex;
+  display: none;
   height: 44px;
   justify-content: center;
   position: fixed;
@@ -786,6 +790,10 @@ button {
 
   .nav-links {
     display: none;
+  }
+
+  .menu-button {
+    display: inline-flex;
   }
 
   .main-menu {

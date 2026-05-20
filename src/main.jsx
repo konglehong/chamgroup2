@@ -206,6 +206,7 @@ function App() {
           <small>GROUP</small>
         </a>
         <nav className="nav-links" aria-label="Primary navigation">
+          <a href="#top">Index</a>
           <a href="#studio">Studio</a>
           <a href="#process">Process</a>
           <a href="#projects">Projects</a>
