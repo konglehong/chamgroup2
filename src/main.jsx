@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { ArrowUpRight, Menu, MoveRight } from "lucide-react";
 import "./styles.css";
@@ -58,20 +58,58 @@ const process = [
   ["04", "Realise", "Stay close through delivery so the finished place carries the same intent as the first sketch."],
 ];
 
-function App() {
-  const featuredTextRef = useRef(null);
-  const featuredSectionRef = useRef(null);
+const featuredProjects = [
+  {
+    title: "Where the city meets the fjord.",
+    eyebrow: "Featured — Oslo Cultural Centre",
+    body:
+      "A civic building conceived as a series of cascading public terraces stepping down toward the water. Each level is a space for gathering, performance, and pause — architecture as threshold between urban life and open landscape.",
+    image: projects[2].image,
+    imageAlt: "Large cultural architecture project",
+  },
+  {
+    title: "Light, steel, and seven floors of intent.",
+    eyebrow: "Featured — Lichten Office HQ",
+    body:
+      "Seven floors of glass and dark steel built around a central atrium that pulls daylight through the entire structure. Designed for a team that wanted a headquarters as precise as their thinking.",
+    image: projects[3].image,
+    imageAlt: "Minimal modern office architecture",
+    reverse: true,
+  },
+  {
+    title: "A house that breathes.",
+    eyebrow: "Featured — Koan House",
+    body:
+      "Raw concrete, shaded timber, and planted thresholds form a quiet residence where the boundaries between shelter, garden, and daily ritual are deliberately softened.",
+    image: projects[0].image,
+    imageAlt: "Concrete residential architecture with garden",
+  },
+];
 
+function App() {
   useEffect(() => {
     const updateFeaturedText = () => {
-      const section = featuredSectionRef.current;
-      const text = featuredTextRef.current;
-      if (!section || !text) return;
+      document.querySelectorAll("[data-featured-section]").forEach((section) => {
+        const text = section.querySelector("[data-featured-text]");
+        const panel = section.querySelector("[data-featured-panel]");
+        const button = section.querySelector("[data-featured-button]");
+        if (!text || !panel || !button) return;
 
-      const rect = section.getBoundingClientRect();
-      const travel = Math.max(0, rect.height - window.innerHeight);
-      const progress = travel === 0 ? 0 : Math.min(1, Math.max(0, -rect.top / travel));
-      text.style.setProperty("--feature-progress", progress.toFixed(4));
+        const rect = section.getBoundingClientRect();
+        const scrollRange = Math.max(1, rect.height - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
+        const panelStyles = window.getComputedStyle(panel);
+        const panelPaddingTop = parseFloat(panelStyles.paddingTop) || 0;
+        const panelPaddingBottom = parseFloat(panelStyles.paddingBottom) || 0;
+        const buttonTop = button.offsetTop;
+        const gapAboveButton = 92;
+        const maxShift = Math.max(
+          0,
+          buttonTop - panelPaddingTop - panelPaddingBottom - text.offsetHeight - gapAboveButton
+        );
+
+        text.style.setProperty("--feature-shift", `${Math.round(progress * maxShift)}px`);
+      });
     };
 
     updateFeaturedText();
@@ -141,25 +179,28 @@ function App() {
         </div>
       </section>
 
-      <section className="featured" id="featured" ref={featuredSectionRef}>
-        <div className="feature-media">
-          <img src={projects[2].image} alt="Large cultural architecture project" />
-        </div>
-        <div className="feature-copy">
-          <div className="feature-copy-inner" ref={featuredTextRef}>
-            <p>Featured — Oslo Cultural Centre</p>
-            <h3>Where the city meets the fjord.</h3>
-            <p>
-              A civic building conceived as a series of cascading public terraces stepping
-              down toward the water. Each level is a space for gathering, performance, and
-              pause — architecture as threshold between urban life and open landscape.
-            </p>
+      {featuredProjects.map((project, index) => (
+        <section
+          className={`featured ${project.reverse ? "featured-reverse" : ""}`}
+          id={index === 0 ? "featured" : undefined}
+          data-featured-section
+          key={project.title}
+        >
+          <div className="feature-media">
+            <img src={project.image} alt={project.imageAlt} />
           </div>
-          <a className="outline-link" href="#contact">
-            Explore project <MoveRight size={18} />
-          </a>
-        </div>
-      </section>
+          <div className="feature-copy" data-featured-panel>
+            <div className="feature-copy-inner" data-featured-text>
+              <p>{project.eyebrow}</p>
+              <h3>{project.title}</h3>
+              <p>{project.body}</p>
+            </div>
+            <a className="outline-link" href="#contact" data-featured-button>
+              Explore project <MoveRight size={18} />
+            </a>
+          </div>
+        </section>
+      ))}
 
       <section className="statement" id="studio">
         <p>Philosophy</p>

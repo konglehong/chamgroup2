@@ -260,6 +260,21 @@ button {
   padding: 0;
 }
 
+.featured-reverse {
+  grid-template-columns: 33.3% 66.7%;
+}
+
+.featured-reverse .feature-media {
+  grid-column: 2;
+}
+
+.featured-reverse .feature-copy {
+  border-left: 0;
+  border-right: 1px solid var(--line);
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .feature-copy {
   border-left: 1px solid var(--line);
   min-height: 100vh;
@@ -269,8 +284,8 @@ button {
 }
 
 .feature-copy-inner {
-  --feature-progress: 0;
-  transform: translateY(calc(var(--feature-progress) * 42vh));
+  --feature-shift: 0px;
+  transform: translateY(var(--feature-shift));
   transition: transform 80ms linear;
 }
 
