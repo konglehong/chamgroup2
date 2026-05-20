@@ -11,7 +11,7 @@ const projects = [
     place: "Hoi An, VN",
     year: "2026",
     image:
-      "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=90",
   },
   {
     number: "02",
@@ -20,7 +20,7 @@ const projects = [
     place: "Da Nang, VN",
     year: "2025",
     image:
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=90",
   },
   {
     number: "03",
@@ -29,7 +29,7 @@ const projects = [
     place: "Ho Chi Minh City, VN",
     year: "2025",
     image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1800&q=90",
   },
   {
     number: "04",
@@ -38,7 +38,7 @@ const projects = [
     place: "Nha Trang, VN",
     year: "2024",
     image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1800&q=90",
   },
   {
     number: "05",
@@ -47,7 +47,7 @@ const projects = [
     place: "Hue, VN",
     year: "2024",
     image:
-      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1800&q=90",
   },
 ];
 
@@ -81,24 +81,24 @@ function App() {
         <div className="hero-image">
           <img src={projects[0].image} alt="CHAM Group hospitality destination" />
           <a className="hero-caption" href="#featured">
-            <span>Cham Heritage</span>
-            <span>Hospitality</span>
+            <span>Cham House</span>
+            <span>Residential</span>
             <span>2026</span>
           </a>
         </div>
-        <div className="hero-kicker">Destination development · Est. 2026</div>
+        <div className="hero-kicker">Architecture & Interior · Est. 2026</div>
         <h1>
-          Land
+          Space
           <span>as</span>
-          Legacy.
+          Practice.
         </h1>
         <div className="hero-bottom">
           <a className="text-link" href="#projects">
             All projects <ArrowUpRight size={18} />
           </a>
           <p>
-            CHAM GROUP develops hospitality, residential, wellness, and cultural destinations
-            rooted in Vietnamese craft, climate, and contemporary living.
+            CHAM GROUP shapes architecture, interiors, and destinations with a quiet,
+            material-led approach rooted in climate, craft, and belonging.
           </p>
         </div>
       </section>
@@ -121,12 +121,12 @@ function App() {
       <section className="featured" id="featured">
         <div className="feature-copy">
           <p>Featured</p>
-          <h2>Cham Heritage Resort</h2>
-          <h3>Where old-town rhythm meets quiet water.</h3>
+          <h2>Cham House</h2>
+          <h3>Where light meets stillness.</h3>
           <p>
-            A river-edge retreat composed as shaded courtyards, timber screens, garden rooms,
-            and slow hospitality rituals. The project turns local material memory into a
-            contemporary guest experience.
+            A calm concrete residence arranged around shaded thresholds, planted courts,
+            and warm interior volumes. The project treats arrival as a slow transition
+            from city noise into private ritual.
           </p>
           <a className="outline-link" href="#contact">
             Discuss a site <MoveRight size={18} />
@@ -141,8 +141,7 @@ function App() {
       <section className="statement" id="studio">
         <p>Philosophy</p>
         <blockquote>
-          “We build from memory and movement: how people arrive, gather, rest, celebrate,
-          and return.”
+          “We don’t build objects first. We build the space between arrival and belonging.”
         </blockquote>
         <cite>CHAM GROUP, founding direction</cite>
       </section>
@@ -196,7 +195,7 @@ function App() {
       <footer className="footer" id="contact">
         <div>
           <h2>CHAM GROUP</h2>
-          <p>Destination development, hospitality, wellness, and cultural places.</p>
+          <p>Architecture, interiors, landscape, and cultural destinations.</p>
         </div>
         <div className="metrics">
           <span><strong>08</strong> Projects</span>
