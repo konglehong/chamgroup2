@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { ArrowUpRight, Menu, MoveRight } from "lucide-react";
 import "./styles.css";
@@ -59,6 +59,31 @@ const process = [
 ];
 
 function App() {
+  const featuredTextRef = useRef(null);
+  const featuredSectionRef = useRef(null);
+
+  useEffect(() => {
+    const updateFeaturedText = () => {
+      const section = featuredSectionRef.current;
+      const text = featuredTextRef.current;
+      if (!section || !text) return;
+
+      const rect = section.getBoundingClientRect();
+      const travel = Math.max(0, rect.height - window.innerHeight);
+      const progress = travel === 0 ? 0 : Math.min(1, Math.max(0, -rect.top / travel));
+      text.style.setProperty("--feature-progress", progress.toFixed(4));
+    };
+
+    updateFeaturedText();
+    window.addEventListener("scroll", updateFeaturedText, { passive: true });
+    window.addEventListener("resize", updateFeaturedText);
+
+    return () => {
+      window.removeEventListener("scroll", updateFeaturedText);
+      window.removeEventListener("resize", updateFeaturedText);
+    };
+  }, []);
+
   return (
     <main>
       <header className="site-header">
@@ -116,23 +141,23 @@ function App() {
         </div>
       </section>
 
-      <section className="featured" id="featured">
-        <div className="feature-copy">
-          <p>Featured</p>
-          <h2>Cham House</h2>
-          <h3>Where light meets stillness.</h3>
-          <p>
-            A calm concrete residence arranged around shaded thresholds, planted courts,
-            and warm interior volumes. The project treats arrival as a slow transition
-            from city noise into private ritual.
-          </p>
-          <a className="outline-link" href="#contact">
-            Discuss a site <MoveRight size={18} />
-          </a>
-        </div>
+      <section className="featured" id="featured" ref={featuredSectionRef}>
         <div className="feature-media">
-          <img src={projects[0].image} alt="Warm resort courtyard with pool and palms" />
-          <img src={projects[1].image} alt="Modern villa interior with garden view" />
+          <img src={projects[2].image} alt="Large cultural architecture project" />
+        </div>
+        <div className="feature-copy">
+          <div className="feature-copy-inner" ref={featuredTextRef}>
+            <p>Featured — Oslo Cultural Centre</p>
+            <h3>Where the city meets the fjord.</h3>
+            <p>
+              A civic building conceived as a series of cascading public terraces stepping
+              down toward the water. Each level is a space for gathering, performance, and
+              pause — architecture as threshold between urban life and open landscape.
+            </p>
+          </div>
+          <a className="outline-link" href="#contact">
+            Explore project <MoveRight size={18} />
+          </a>
         </div>
       </section>
 
