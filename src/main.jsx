@@ -78,19 +78,28 @@ function App() {
       </header>
 
       <section className="hero" id="top">
+        <div className="hero-image">
+          <img src={projects[0].image} alt="CHAM Group hospitality destination" />
+          <a className="hero-caption" href="#featured">
+            <span>Cham Heritage</span>
+            <span>Hospitality</span>
+            <span>2026</span>
+          </a>
+        </div>
         <div className="hero-kicker">Destination development · Est. 2026</div>
         <h1>
-          Places that feel
-          <span> remembered.</span>
+          Land
+          <span>as</span>
+          Legacy.
         </h1>
         <div className="hero-bottom">
+          <a className="text-link" href="#projects">
+            All projects <ArrowUpRight size={18} />
+          </a>
           <p>
             CHAM GROUP develops hospitality, residential, wellness, and cultural destinations
             rooted in Vietnamese craft, climate, and contemporary living.
           </p>
-          <a className="text-link" href="#projects">
-            View projects <ArrowUpRight size={18} />
-          </a>
         </div>
       </section>
 
