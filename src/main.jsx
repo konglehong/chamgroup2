@@ -205,9 +205,11 @@ function App() {
       <section className="statement" id="studio">
         <p>Philosophy</p>
         <blockquote>
-          “We don’t build objects first. We build the space between arrival and belonging.”
+          “Chúng tôi không tạo nên những công trình để đứng yên.
+          Chúng tôi kiến tạo <em>ngưỡng chạm</em> — nơi con người bước vào,
+          dừng lại và thuộc về.”
         </blockquote>
-        <cite>CHAM GROUP, founding direction</cite>
+        <cite>CHAM GROUP, tuyên ngôn sáng lập</cite>
       </section>
 
       <section className="process" id="process">
