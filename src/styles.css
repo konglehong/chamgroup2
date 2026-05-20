@@ -14,6 +14,7 @@
 
 * {
   box-sizing: border-box;
+  cursor: none !important;
 }
 
 html {
@@ -222,30 +223,73 @@ button {
   text-transform: uppercase;
 }
 
+/* ── Custom cursor – mix-blend-mode: difference ── */
 .cursor-dot {
-  background: rgba(17, 17, 17, 1);
-  border-radius: 999px;
-  height: 12px;
   left: 0;
+  mix-blend-mode: difference;
   opacity: 0;
   pointer-events: none;
   position: fixed;
   top: 0;
-  transition: opacity 180ms ease, height 240ms cubic-bezier(0.16, 1, 0.3, 1), width 240ms cubic-bezier(0.16, 1, 0.3, 1), background 240ms ease, border 240ms ease;
+  transition: opacity 220ms ease;
+  will-change: transform;
+  z-index: 9999;
+}
+
+.cursor-dot-visible { opacity: 1; }
+
+.cursor-inner {
+  background: #ffffff;
+  border-radius: 50%;
+  display: block;
+  transition:
+    width  0.52s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.52s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Default – small dot ── */
+.cursor-dot[data-state="default"] .cursor-inner,
+.cursor-dot:not([data-state]) .cursor-inner {
+  height: 12px;
   width: 12px;
-  z-index: 120;
 }
 
-.cursor-dot-visible {
-  opacity: 1;
+/* ── Nav links – large circle → text inverts to white ── */
+.cursor-dot[data-state="nav"] .cursor-inner {
+  height: 56px;
+  width: 56px;
 }
 
-.cursor-dot-active {
-  background: rgba(17, 17, 17, 0.05);
-  border: 1px solid rgba(17, 17, 17, 0.2);
+/* ── Image – large lens → image colours invert ── */
+.cursor-dot[data-state="image"] .cursor-inner {
   height: 72px;
   width: 72px;
 }
+
+/* ── Row – medium-large circle ── */
+.cursor-dot[data-state="row"] .cursor-inner {
+  height: 56px;
+  width: 56px;
+}
+
+/* ── Link – medium circle ── */
+.cursor-dot[data-state="link"] .cursor-inner {
+  height: 44px;
+  width: 44px;
+}
+
+/* ── Menu – large (for oversized menu links) ── */
+.cursor-dot[data-state="menu"] .cursor-inner {
+  height: 56px;
+  width: 56px;
+}
+
+/* ── Button ── */
+.cursor-dot[data-state="button"] .cursor-inner {
+  height: 48px;
+  width: 48px;
+}
+
 
 .hero {
   border-bottom: 1px solid var(--line);
@@ -659,10 +703,12 @@ button {
   padding: 28px clamp(24px, 3vw, 44px);
   text-decoration: none;
   color: inherit;
-  transition: opacity 0.2s;
+  transition: background 180ms ease, padding-left 180ms ease;
 }
 .press-block .press-article:hover {
-  opacity: 0.7;
+  background: rgba(17, 17, 17, 0.025);
+  opacity: 1;
+  padding-left: calc(clamp(24px, 3vw, 44px) + 10px);
 }
 
 .press-block p {
@@ -1048,6 +1094,15 @@ button {
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(26px, 2vw, 36px);
   line-height: 1.05;
+}
+
+.projects-table-row {
+  transition: background 180ms ease, padding-left 180ms ease;
+}
+
+.projects-table-row:hover {
+  background: rgba(17, 17, 17, 0.035);
+  padding-left: calc(clamp(24px, 3vw, 44px) + 12px);
 }
 
 .reveal-up {

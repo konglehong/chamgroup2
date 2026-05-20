@@ -648,15 +648,15 @@ function ContactPage() {
         </div>
 
         <div className="contact-map reveal-up">
-          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80" alt="Map of Berlin" className="map-image" style={{filter: 'grayscale(100%) contrast(1.2)'}} />
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80" alt="Map of Ho Chi Minh City" className="map-image" style={{filter: 'grayscale(100%) contrast(1.2)'}} />
           <div className="map-landmark">
             <div className="landmark-header">
               <span className="landmark-label">LANDMARK</span>
               <button className="landmark-close">×</button>
             </div>
             <strong>CHÂM GROUP</strong>
-            <p>Auguststraße 26, 10117 Berlin, Germany</p>
-            <small>📍 Berlin</small>
+            <p>Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+            <small>📍 Ho Chi Minh City</small>
           </div>
         </div>
       </section>
@@ -691,11 +691,11 @@ function ContactPage() {
         <div className="close-cell close-contact">
           <h2>Contact</h2>
           <address>
-            <a href="mailto:hello@studionave.com">hello@studionave.com</a>
-            <a href="tel:+4930000000">+49 30 000 000</a>
-            <span>Mitte, Berlin DE 10117</span>
+            <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
+            <a href="tel:+842800000000">+84 28 0000 0000</a>
+            <span>Quận 1, TP. Hồ Chí Minh</span>
           </address>
-          <a className="new-enquiry" href="mailto:hello@studionave.com">
+          <a className="new-enquiry" href="mailto:hello@chamgroup.vn">
             New enquiries <MoveRight size={18} />
           </a>
         </div>
@@ -880,10 +880,11 @@ function App() {
     let mouseY = window.innerHeight / 2;
     let cursorX = mouseX;
     let cursorY = mouseY;
+    let currentState = "default";
 
     const render = () => {
-      cursorX += (mouseX - cursorX) * 0.18;
-      cursorY += (mouseY - cursorY) * 0.18;
+      cursorX += (mouseX - cursorX) * 0.13;
+      cursorY += (mouseY - cursorY) * 0.13;
       cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
       rafId = window.requestAnimationFrame(render);
     };
@@ -894,25 +895,36 @@ function App() {
       cursor.classList.add("cursor-dot-visible");
     };
 
-    const leave = () => {
-      cursor.classList.remove("cursor-dot-visible");
+    const leave = () => cursor.classList.remove("cursor-dot-visible");
+
+    const getState = (target) => {
+      if (target.closest(".menu-links a")) return "menu";
+      if (target.closest(".work-tile, .feature-media, .hero-image, .process-step-media img, .project-detail-hero img, .team-grid img, .studio-image img"))
+        return "image";
+      if (target.closest(".nav-links a, .brand")) return "nav";
+      if (target.closest(".projects-table-row, .press-article, .project-row"))
+        return "row";
+      if (target.closest(".outline-link, .text-link, .new-enquiry, .hero-caption"))
+        return "link";
+      if (target.closest("button")) return "button";
+      if (target.closest("a")) return "link";
+      return "default";
     };
 
-    const toggleHover = (event) => {
-      cursor.classList.toggle("cursor-dot-active", Boolean(event.target.closest("a, button")));
+    const applyState = (state) => {
+      if (state === currentState) return;
+      currentState = state;
+      cursor.dataset.state = state;
     };
 
     window.addEventListener("pointermove", move, { passive: true });
-    window.addEventListener("pointerover", toggleHover, { passive: true });
-    window.addEventListener("pointerout", toggleHover, { passive: true });
+    window.addEventListener("pointerover", (e) => applyState(getState(e.target)), { passive: true });
     document.addEventListener("mouseleave", leave);
     rafId = window.requestAnimationFrame(render);
 
     return () => {
       window.cancelAnimationFrame(rafId);
       window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerover", toggleHover);
-      window.removeEventListener("pointerout", toggleHover);
       document.removeEventListener("mouseleave", leave);
     };
   }, []);
@@ -983,7 +995,9 @@ function App() {
 
   return (
     <main>
-      <div className="cursor-dot" aria-hidden="true" />
+      <div className="cursor-dot" data-state="default" aria-hidden="true">
+        <div className="cursor-inner" />
+      </div>
       <header className="site-header">
         <a className="brand" href="/" aria-label="CHAM GROUP home">
           <span>CHAM</span>
