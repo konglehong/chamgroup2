@@ -218,8 +218,7 @@ button {
   margin-top: 18px;
 }
 
-.project-row,
-.selected a {
+.project-row {
   align-items: center;
   border-top: 1px solid var(--line);
   display: grid;
@@ -229,22 +228,19 @@ button {
   transition: background 180ms ease, padding 180ms ease;
 }
 
-.project-row:hover,
-.selected a:hover {
+.project-row:hover {
   background: rgba(11, 11, 10, 0.035);
   padding-left: 14px;
 }
 
-.project-row strong,
-.selected span {
+.project-row strong {
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(26px, 4vw, 54px);
   font-weight: 400;
 }
 
 .project-row em,
-.project-row small,
-.selected small {
+.project-row small {
   color: var(--muted);
   font-style: normal;
 }
@@ -668,10 +664,6 @@ address {
 
   .process-grid span {
     margin-bottom: 22px;
-  }
-
-  .selected a {
-    grid-template-columns: 1fr;
   }
 
   .selected-gallery {
