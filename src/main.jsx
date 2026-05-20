@@ -139,6 +139,93 @@ const teamMembers = [
   },
 ];
 
+const processDetails = [
+  {
+    number: "01",
+    title: "Listen",
+    intro: "Bắt đầu bằng sự tĩnh lặng: hiểu khu đất, bản brief và đời sống sẽ hiện diện trong không gian.",
+    caption:
+      "Mỗi dự án khởi đầu bằng những cuộc trò chuyện sâu: với khách hàng, với khu đất, với bối cảnh xung quanh. Chúng tôi quan sát ánh sáng, âm thanh và chuyển động trước khi vẽ.",
+    image:
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1800&q=90",
+  },
+  {
+    number: "02",
+    title: "Sketch",
+    intro: "Trước kỹ thuật số là bàn tay. Ý tưởng được thử bằng mô hình, giấy, than và đường nét.",
+    caption:
+      "Studio đầy giấy, mô hình bìa, mẫu wax và nét phác. Quá trình thủ công buộc chúng tôi suy nghĩ bằng tay, tìm ra những mối quan hệ phần mềm thường bỏ lỡ.",
+    image:
+      "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1800&q=90",
+  },
+  {
+    number: "03",
+    title: "Refine",
+    intro: "Mỗi chi tiết được đặt câu hỏi: vật liệu, tỷ lệ và ánh sáng qua từng mùa.",
+    caption:
+      "Chúng tôi làm mẫu vật liệu 1:1, thử hoàn thiện tại chỗ và mô phỏng ánh sáng ở nhiều thời điểm. Đây là lúc ý tưởng chuyển thành điều tất yếu.",
+    image:
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1800&q=90",
+  },
+  {
+    number: "04",
+    title: "Realise",
+    intro: "Chúng tôi theo sát công trường từ mẻ đổ đầu tiên đến hoàn thiện cuối cùng.",
+    caption:
+      "Kiến trúc sư hiện diện xuyên suốt thi công, làm việc cùng đội ngũ thủ công để ý định thiết kế đi đến từng chi tiết. Công trình chỉ hoàn tất khi cảm giác trở nên tự nhiên.",
+    image:
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=90",
+  },
+];
+
+function ProcessPage() {
+  return (
+    <>
+      <section className="process-page-intro reveal-up">
+        <p>Methodology</p>
+        <h1>Our Process.</h1>
+        <p>
+          Quy trình của chúng tôi không tuyến tính. Mỗi giai đoạn soi sáng cho giai đoạn kế tiếp,
+          và đôi khi quay lại điểm bắt đầu để làm rõ điều cốt lõi.
+        </p>
+      </section>
+
+      <section className="process-hero-image reveal-up">
+        <img
+          src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2200&q=90"
+          alt="Architecture team reviewing drawings"
+        />
+      </section>
+
+      <section className="process-steps">
+        {processDetails.map((step) => (
+          <article className="process-step" data-process-section key={step.number}>
+            <div className="process-step-copy">
+              <div className="process-step-copy-inner" data-process-text>
+                <span>{step.number}</span>
+                <h2>{step.title}</h2>
+                <p>{step.intro}</p>
+              </div>
+            </div>
+            <div className="process-step-media">
+              <img className="reveal-up" src={step.image} alt={`${step.title} process`} />
+              <p className="reveal-up">{step.caption}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="ready-section reveal-up">
+        <h2>Ready to begin?</h2>
+        <p>Mỗi dự án bắt đầu bằng một cuộc trò chuyện. Hãy kể cho chúng tôi về tầm nhìn của bạn.</p>
+        <a className="outline-link" href="/#contact">
+          Get in touch <MoveRight size={18} />
+        </a>
+      </section>
+    </>
+  );
+}
+
 function StudioPage() {
   return (
     <>
@@ -250,6 +337,7 @@ function StudioPage() {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isStudioPage = window.location.pathname === "/studio";
+  const isProcessPage = window.location.pathname === "/process";
 
   useEffect(() => {
     const updateFeaturedText = () => {
@@ -273,6 +361,17 @@ function App() {
         );
 
         text.style.setProperty("--feature-shift", `${Math.round(progress * maxShift)}px`);
+      });
+
+      document.querySelectorAll("[data-process-section]").forEach((section) => {
+        const text = section.querySelector("[data-process-text]");
+        if (!text) return;
+
+        const rect = section.getBoundingClientRect();
+        const scrollRange = Math.max(1, rect.height - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
+        const maxShift = Math.max(0, window.innerHeight * 0.42 - text.offsetHeight * 0.25);
+        text.style.setProperty("--process-shift", `${Math.round(progress * maxShift)}px`);
       });
     };
 
@@ -333,6 +432,26 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const elements = document.querySelectorAll(".reveal-up");
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [isStudioPage, isProcessPage]);
+
+  useEffect(() => {
     document.body.classList.toggle("menu-is-open", menuOpen);
     return () => document.body.classList.remove("menu-is-open");
   }, [menuOpen]);
@@ -348,7 +467,7 @@ function App() {
         <nav className="nav-links" aria-label="Primary navigation">
           <a className={!isStudioPage ? "active" : ""} href="/">Index</a>
           <a className={isStudioPage ? "active" : ""} href="/studio">Studio</a>
-          <a href="/#process">Process</a>
+          <a className={isProcessPage ? "active" : ""} href="/process">Process</a>
           <a href="/#projects">Projects</a>
           <a href="/#contact">Contact</a>
         </nav>
@@ -382,7 +501,7 @@ function App() {
         <div className="menu-links">
           <a href="/" onClick={() => setMenuOpen(false)}>Index</a>
           <a href="/studio" onClick={() => setMenuOpen(false)}>Studio</a>
-          <a href="/#process" onClick={() => setMenuOpen(false)}>Process</a>
+          <a href="/process" onClick={() => setMenuOpen(false)}>Process</a>
           <a href="/#projects" onClick={() => setMenuOpen(false)}>Projects</a>
           <a href="/#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </div>
@@ -392,7 +511,9 @@ function App() {
         </div>
       </nav>
 
-      {isStudioPage ? (
+      {isProcessPage ? (
+        <ProcessPage />
+      ) : isStudioPage ? (
         <StudioPage />
       ) : (
         <>
