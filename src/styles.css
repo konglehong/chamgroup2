@@ -959,6 +959,92 @@ button {
   border-top: 0;
 }
 
+.projects-intro {
+  border-bottom: 1px solid var(--line);
+  padding: clamp(58px, 6vw, 86px) clamp(24px, 3vw, 44px) clamp(42px, 5vw, 62px);
+}
+
+.projects-intro > p:first-child {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.projects-intro h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(46px, 4.5vw, 72px);
+  font-weight: 700;
+  line-height: 1.02;
+  margin: 42px 0 34px;
+}
+
+.projects-intro > p:last-child {
+  color: #4f4d49;
+  font-size: 17px;
+  line-height: 1.32;
+  margin: 0;
+  max-width: 620px;
+}
+
+.project-filters {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+  padding: 22px clamp(24px, 3vw, 44px);
+}
+
+.project-filters button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: #4f4d49;
+  min-width: 88px;
+  padding: 12px 18px;
+}
+
+.project-filters button.active {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.projects-gallery {
+  padding-top: 0;
+}
+
+.projects-gallery .selected-gallery {
+  margin-top: 0;
+}
+
+.projects-table {
+  border-top: 1px solid var(--line);
+}
+
+.projects-table-row {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 54px minmax(280px, 1fr) 180px 160px 100px;
+  min-height: 108px;
+  padding: 0 clamp(24px, 3vw, 44px);
+}
+
+.projects-table-row span,
+.projects-table-row em,
+.projects-table-row small,
+.projects-table-row time {
+  color: #625f5a;
+  font-size: 17px;
+  font-style: normal;
+}
+
+.projects-table-row strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(26px, 2vw, 36px);
+  line-height: 1.05;
+}
+
 .reveal-up {
   opacity: 0;
   transform: translateY(36px);
@@ -1165,6 +1251,28 @@ button {
   .studio-stats {
     gap: 28px;
     padding: 34px 24px;
+  }
+
+  .projects-intro {
+    padding: 46px 24px 38px;
+  }
+
+  .project-filters {
+    overflow-x: auto;
+    padding: 18px 24px;
+  }
+
+  .projects-table-row {
+    gap: 12px;
+    grid-template-columns: 42px 1fr;
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .projects-table-row em,
+  .projects-table-row small,
+  .projects-table-row time {
+    grid-column: 2;
   }
 
   .process-page-intro {

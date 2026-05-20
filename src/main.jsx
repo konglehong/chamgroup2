@@ -108,6 +108,15 @@ const selectedWorks = [
   },
 ];
 
+const projectRows = [
+  ["01", "Koan House", "Residential", "Tokyo, JP", "2026"],
+  ["02", "Steinhaus Pavilion", "Interior", "Oslo, NO", "2025"],
+  ["03", "Grafjell Retreat", "Interior", "Bergen, NO", "2025"],
+  ["04", "Lichten Office HQ", "Commercial", "Berlin, DE", "2024"],
+  ["05", "Oslo Cultural Centre", "Cultural", "Oslo, NO", "2024"],
+  ["06", "Murano Residence", "Interior", "Venice, IT", "2023"],
+];
+
 const teamMembers = [
   {
     name: "Minh Tran",
@@ -178,6 +187,138 @@ const processDetails = [
   },
 ];
 
+function SiteFooter() {
+  return (
+    <footer className="site-close" id="contact">
+      <section className="press-block">
+        <h2>Press & Recognition</h2>
+        <article>
+          <p>“CHAM mở ra một ngôn ngữ kiến trúc điềm tĩnh — nơi công trình phục vụ cơ thể trước khi chạm đến thị giác.”</p>
+          <span>Elle Decoration<br />2026</span>
+        </article>
+        <article>
+          <p>“Koan House là một trong những dự án nhà ở được cân nhắc kỹ lưỡng nhất trong năm.”</p>
+          <span>ArchDaily<br />2025</span>
+        </article>
+        <article>
+          <p>“Cách họ làm việc chứng minh kiến trúc Việt Nam có thể vừa sâu rễ, vừa đương đại.”</p>
+          <span>Design Anthology<br />2024</span>
+        </article>
+      </section>
+
+      <section className="close-grid">
+        <div className="close-cell close-process">
+          <h2>Process</h2>
+          <p>Chúng tôi thiết kế từ bên trong ra ngoài — bắt đầu bằng cách con người di chuyển, tụ họp và nghỉ ngơi.</p>
+          <p>Kiến trúc không chỉ là tạo vật thể. Đó là kiến tạo trải nghiệm sống.</p>
+        </div>
+
+        <div className="close-cell close-services">
+          <h2>Services</h2>
+          <ul>
+            <li>Architecture</li>
+            <li>Interior Design</li>
+            <li>Landscape</li>
+            <li>Hospitality Concept</li>
+          </ul>
+        </div>
+
+        <div className="close-cell close-recognition">
+          <h2>Recognition</h2>
+          <div className="stat-grid">
+            <span><strong>18</strong>Dự án</span>
+            <span><strong>12</strong>Năm</span>
+            <span><strong>21</strong>Giải thưởng</span>
+            <span><strong>05</strong>Thành phố</span>
+          </div>
+        </div>
+
+        <div className="close-cell close-contact">
+          <h2>Contact</h2>
+          <address>
+            <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
+            <a href="tel:+842800000000">+84 28 0000 0000</a>
+            <span>Quận 1, TP. Hồ Chí Minh</span>
+          </address>
+          <a className="new-enquiry" href="mailto:hello@chamgroup.vn">
+            New enquiries <MoveRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      <section className="footer-bottom">
+        <span>CHAM GROUP © 2026</span>
+        <span>Architecture & Interior Design</span>
+        <span>
+          <a href="/">X</a>
+          <a href="/">LinkedIn</a>
+          <a href="/">Behance</a>
+        </span>
+      </section>
+    </footer>
+  );
+}
+
+function ProjectsPage() {
+  return (
+    <>
+      <section className="projects-intro reveal-up">
+        <p>Projects</p>
+        <h1>Selected Works.</h1>
+        <p>
+          Một tuyển chọn các dự án nhà ở, văn hóa và thương mại — được định hình
+          bởi bối cảnh, vật liệu và sự chính xác trong không gian.
+        </p>
+      </section>
+
+      <section className="project-filters reveal-up" aria-label="Project filters">
+        {["All", "Commercial", "Landscape", "Cultural", "Interior", "Residential"].map((filter, index) => (
+          <button className={index === 0 ? "active" : ""} type="button" key={filter}>
+            {filter}
+          </button>
+        ))}
+      </section>
+
+      <section className="selected projects-gallery">
+        <div className="selected-gallery">
+          {selectedWorks.map((work) => (
+            <article className={`work-pair ${work.reverse ? "work-pair-reverse" : ""}`} key={work.title}>
+              <a className="work-tile work-tile-large" href="#project-list">
+                <img src={work.largeImage} alt={work.title} />
+                <span className="work-caption">
+                  <strong>{work.title}</strong>
+                  <small>{work.meta}</small>
+                </span>
+              </a>
+              <a className="work-tile work-tile-small" href="#project-list">
+                <img src={work.smallImage} alt={`${work.title} detail`} />
+                <span className="work-caption">
+                  <strong>{work.title}</strong>
+                  <small>{work.meta}</small>
+                </span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="projects-table" id="project-list">
+        {projectRows.map(([number, name, type, place, year]) => (
+          <a className="projects-table-row reveal-up" href="#project-list" key={name}>
+            <span>{number}</span>
+            <strong>{name}</strong>
+            <em>{type}</em>
+            <small>{place}</small>
+            <time>{year}</time>
+          </a>
+        ))}
+      </section>
+
+      <SiteFooter />
+    </>
+  );
+}
+
 function ProcessPage() {
   return (
     <>
@@ -222,6 +363,7 @@ function ProcessPage() {
           Get in touch <MoveRight size={18} />
         </a>
       </section>
+      <SiteFooter />
     </>
   );
 }
@@ -322,14 +464,7 @@ function StudioPage() {
         </div>
       </section>
 
-      <footer className="footer-bottom studio-bottom">
-        <span>CHAM GROUP © 2026</span>
-        <span>Architecture & Interior Design</span>
-        <span>
-          <a href="/">Index</a>
-          <a href="/#contact">Contact</a>
-        </span>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
@@ -338,6 +473,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isStudioPage = window.location.pathname === "/studio";
   const isProcessPage = window.location.pathname === "/process";
+  const isProjectsPage = window.location.pathname === "/projects";
 
   useEffect(() => {
     const updateFeaturedText = () => {
@@ -437,6 +573,9 @@ function App() {
       ".hero-image",
       ".project-index",
       ".project-row",
+      ".projects-intro > *",
+      ".project-filters",
+      ".projects-table-row",
       ".feature-media img",
       ".feature-copy .outline-link",
       ".statement > p",
@@ -485,7 +624,7 @@ function App() {
 
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
-  }, [isStudioPage, isProcessPage]);
+  }, [isStudioPage, isProcessPage, isProjectsPage]);
 
   useEffect(() => {
     document.body.classList.toggle("menu-is-open", menuOpen);
@@ -501,10 +640,10 @@ function App() {
           <small>GROUP</small>
         </a>
         <nav className="nav-links" aria-label="Primary navigation">
-          <a className={!isStudioPage ? "active" : ""} href="/">Index</a>
+          <a className={!isStudioPage && !isProcessPage && !isProjectsPage ? "active" : ""} href="/">Index</a>
           <a className={isStudioPage ? "active" : ""} href="/studio">Studio</a>
           <a className={isProcessPage ? "active" : ""} href="/process">Process</a>
-          <a href="/#projects">Projects</a>
+          <a className={isProjectsPage ? "active" : ""} href="/projects">Projects</a>
           <a href="/#contact">Contact</a>
         </nav>
         <button
@@ -538,7 +677,7 @@ function App() {
           <a href="/" onClick={() => setMenuOpen(false)}>Index</a>
           <a href="/studio" onClick={() => setMenuOpen(false)}>Studio</a>
           <a href="/process" onClick={() => setMenuOpen(false)}>Process</a>
-          <a href="/#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+          <a href="/projects" onClick={() => setMenuOpen(false)}>Projects</a>
           <a href="/#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </div>
         <div className="menu-footer">
@@ -547,7 +686,9 @@ function App() {
         </div>
       </nav>
 
-      {isProcessPage ? (
+      {isProjectsPage ? (
+        <ProjectsPage />
+      ) : isProcessPage ? (
         <ProcessPage />
       ) : isStudioPage ? (
         <StudioPage />
@@ -665,73 +806,7 @@ function App() {
         </div>
       </section>
 
-      <footer className="site-close" id="contact">
-        <section className="press-block">
-          <h2>Press & Recognition</h2>
-          <article>
-            <p>“CHAM mở ra một ngôn ngữ kiến trúc điềm tĩnh — nơi công trình phục vụ cơ thể trước khi chạm đến thị giác.”</p>
-            <span>Elle Decoration<br />2026</span>
-          </article>
-          <article>
-            <p>“Koan House là một trong những dự án nhà ở được cân nhắc kỹ lưỡng nhất trong năm.”</p>
-            <span>ArchDaily<br />2025</span>
-          </article>
-          <article>
-            <p>“Cách họ làm việc chứng minh kiến trúc Việt Nam có thể vừa sâu rễ, vừa đương đại.”</p>
-            <span>Design Anthology<br />2024</span>
-          </article>
-        </section>
-
-        <section className="close-grid">
-          <div className="close-cell close-process">
-            <h2>Process</h2>
-            <p>Chúng tôi thiết kế từ bên trong ra ngoài — bắt đầu bằng cách con người di chuyển, tụ họp và nghỉ ngơi.</p>
-            <p>Kiến trúc không chỉ là tạo vật thể. Đó là kiến tạo trải nghiệm sống.</p>
-          </div>
-
-          <div className="close-cell close-services">
-            <h2>Services</h2>
-            <ul>
-              <li>Architecture</li>
-              <li>Interior Design</li>
-              <li>Landscape</li>
-              <li>Hospitality Concept</li>
-            </ul>
-          </div>
-
-          <div className="close-cell close-recognition">
-            <h2>Recognition</h2>
-            <div className="stat-grid">
-              <span><strong>18</strong>Dự án</span>
-              <span><strong>12</strong>Năm</span>
-              <span><strong>21</strong>Giải thưởng</span>
-              <span><strong>05</strong>Thành phố</span>
-            </div>
-          </div>
-
-          <div className="close-cell close-contact">
-            <h2>Contact</h2>
-            <address>
-              <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
-              <a href="tel:+842800000000">+84 28 0000 0000</a>
-              <span>Quận 1, TP. Hồ Chí Minh</span>
-            </address>
-            <a className="new-enquiry" href="mailto:hello@chamgroup.vn">
-              New enquiries <MoveRight size={18} />
-            </a>
-          </div>
-        </section>
-
-        <section className="footer-bottom">
-          <span>CHAM GROUP © 2026</span>
-          <span>Architecture & Interior Design</span>
-          <span>
-            <a href="#top">X</a>
-            <a href="#top">LinkedIn</a>
-            <a href="#top">Behance</a>
-          </span>
-        </section>
-      </footer>
+      <SiteFooter />
         </>
       )}
     </main>
