@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ArrowUpRight, Menu, MoveRight } from "lucide-react";
 import "./styles.css";
@@ -109,6 +109,8 @@ const selectedWorks = [
 ];
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const updateFeaturedText = () => {
       document.querySelectorAll("[data-featured-section]").forEach((section) => {
@@ -144,8 +146,60 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const cursor = document.querySelector(".cursor-dot");
+    if (!cursor) return;
+
+    let rafId = 0;
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let cursorX = mouseX;
+    let cursorY = mouseY;
+
+    const render = () => {
+      cursorX += (mouseX - cursorX) * 0.18;
+      cursorY += (mouseY - cursorY) * 0.18;
+      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+      rafId = window.requestAnimationFrame(render);
+    };
+
+    const move = (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      cursor.classList.add("cursor-dot-visible");
+    };
+
+    const leave = () => {
+      cursor.classList.remove("cursor-dot-visible");
+    };
+
+    const toggleHover = (event) => {
+      cursor.classList.toggle("cursor-dot-active", Boolean(event.target.closest("a, button")));
+    };
+
+    window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("pointerover", toggleHover, { passive: true });
+    window.addEventListener("pointerout", toggleHover, { passive: true });
+    document.addEventListener("mouseleave", leave);
+    rafId = window.requestAnimationFrame(render);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerover", toggleHover);
+      window.removeEventListener("pointerout", toggleHover);
+      document.removeEventListener("mouseleave", leave);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("menu-is-open", menuOpen);
+    return () => document.body.classList.remove("menu-is-open");
+  }, [menuOpen]);
+
   return (
     <main>
+      <div className="cursor-dot" aria-hidden="true" />
       <header className="site-header">
         <a className="brand" href="#top" aria-label="CHAM GROUP home">
           <span>CHAM</span>
@@ -157,10 +211,45 @@ function App() {
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
-        <button className="menu-button" aria-label="Open menu">
+        <button
+          className="menu-button"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
           <Menu size={20} />
         </button>
       </header>
+
+      <button
+        className="desktop-menu-button"
+        aria-expanded={menuOpen}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        <Menu size={22} />
+      </button>
+
+      <nav className={`main-menu ${menuOpen ? "main-menu-open" : ""}`} aria-label="Main menu">
+        <div className="menu-brand">
+          <span>CHAM</span>
+          <small>Architecture Studio</small>
+        </div>
+        <button className="menu-close" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
+          Close
+        </button>
+        <div className="menu-links">
+          <a href="#top" onClick={() => setMenuOpen(false)}>Index</a>
+          <a href="#studio" onClick={() => setMenuOpen(false)}>Studio</a>
+          <a href="#process" onClick={() => setMenuOpen(false)}>Process</a>
+          <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+        </div>
+        <div className="menu-footer">
+          <span>CHAM GROUP © 2026</span>
+          <span>Architecture & Interior Design</span>
+        </div>
+      </nav>
 
       <section className="hero" id="top">
         <div className="hero-copy">
