@@ -1,15 +1,15 @@
 :root {
-  color: #0b0b0a;
-  background: #f7f6f1;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #111111;
+  background: #fbfaf9;
+  font-family: "DM Sans", Arial, sans-serif;
   font-synthesis: none;
   text-rendering: geometricPrecision;
-  --paper: #f7f6f1;
-  --ink: #0b0b0a;
-  --muted: #7c7a74;
-  --line: rgba(11, 11, 10, 0.12);
-  --dark: #11110f;
-  --light: #f7f6f1;
+  --paper: #fbfaf9;
+  --ink: #111111;
+  --muted: #7d7d7d;
+  --line: rgba(17, 17, 17, 0.12);
+  --dark: #111111;
+  --light: #fbfaf9;
 }
 
 * {
@@ -186,7 +186,7 @@ button {
 }
 
 .menu-links a {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(54px, 8vw, 132px);
   line-height: 0.82;
   width: max-content;
@@ -196,7 +196,7 @@ button {
   color: var(--muted);
   content: "→";
   display: inline-block;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: "Space Mono", monospace;
   font-size: 0.18em;
   margin-right: 0.22em;
   opacity: 0;
@@ -223,29 +223,28 @@ button {
 }
 
 .cursor-dot {
-  background: rgba(12, 12, 11, 0.72);
-  border: 1px solid rgba(247, 246, 241, 0.42);
+  background: rgba(17, 17, 17, 1);
   border-radius: 999px;
-  height: 52px;
+  height: 12px;
   left: 0;
-  mix-blend-mode: multiply;
   opacity: 0;
   pointer-events: none;
   position: fixed;
   top: 0;
-  transition: opacity 180ms ease, height 180ms ease, width 180ms ease, background 180ms ease;
-  width: 52px;
+  transition: opacity 180ms ease, height 240ms cubic-bezier(0.16, 1, 0.3, 1), width 240ms cubic-bezier(0.16, 1, 0.3, 1), background 240ms ease, border 240ms ease;
+  width: 12px;
   z-index: 120;
 }
 
 .cursor-dot-visible {
-  opacity: 0.78;
+  opacity: 1;
 }
 
 .cursor-dot-active {
-  background: rgba(12, 12, 11, 0.86);
-  height: 68px;
-  width: 68px;
+  background: rgba(17, 17, 17, 0.05);
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  height: 72px;
+  width: 72px;
 }
 
 .hero {
@@ -314,7 +313,7 @@ button {
 }
 
 .hero h1 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(70px, 10.5vw, 138px);
   font-weight: 400;
   letter-spacing: 0;
@@ -372,7 +371,7 @@ button {
 }
 
 .project-row strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(26px, 4vw, 54px);
   font-weight: 400;
 }
@@ -436,7 +435,7 @@ button {
 }
 
 .feature-copy h3 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(42px, 4.4vw, 76px);
   font-weight: 400;
   letter-spacing: 0;
@@ -478,7 +477,7 @@ button {
 }
 
 .statement blockquote {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   color: #4c4b48;
   font-size: clamp(34px, 4vw, 58px);
   font-weight: 700;
@@ -512,7 +511,7 @@ button {
 }
 
 .process-heading h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(42px, 4.5vw, 66px);
   font-weight: 700;
   line-height: 1.02;
@@ -536,7 +535,7 @@ button {
 .process-grid span {
   color: var(--ink);
   display: block;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(34px, 3vw, 48px);
   font-weight: 700;
   line-height: 1;
@@ -544,7 +543,7 @@ button {
 }
 
 .process-grid h3 {
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", Arial, sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 1.25;
@@ -608,7 +607,7 @@ button {
 }
 
 .work-caption strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(26px, 2vw, 38px);
   line-height: 1;
 }
@@ -650,7 +649,7 @@ button {
   padding: 24px clamp(24px, 3vw, 44px);
 }
 
-.press-block article {
+.press-block .press-article {
   align-items: center;
   border-bottom: 1px solid var(--line);
   display: grid;
@@ -658,10 +657,16 @@ button {
   grid-template-columns: 1fr 180px;
   min-height: 112px;
   padding: 28px clamp(24px, 3vw, 44px);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+.press-block .press-article:hover {
+  opacity: 0.7;
 }
 
 .press-block p {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(18px, 1.35vw, 24px);
   font-weight: 700;
   line-height: 1.2;
@@ -734,7 +739,7 @@ button {
 .stat-grid strong {
   color: var(--ink);
   display: block;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(34px, 3vw, 48px);
   line-height: 1;
 }
@@ -795,7 +800,7 @@ button {
 
 .studio-intro h1,
 .studio-section-heading h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "DM Serif Display", serif;
   font-size: clamp(46px, 4.5vw, 72px);
   font-weight: 700;
   letter-spacing: 0;
@@ -1463,7 +1468,7 @@ button {
     transform: translateY(0);
   }
 
-  .press-block article {
+  .press-block .press-article {
     align-items: start;
     grid-template-columns: 1fr;
     min-height: auto;
@@ -1500,5 +1505,264 @@ button {
 
   .footer-bottom span:nth-child(3) {
     justify-content: flex-start;
+  }
+}
+
+/* =========================================
+   Project Detail Page
+   ========================================= */
+.project-detail-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.project-detail-hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.project-detail-header-overlay {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, var(--paper) 100%);
+  height: min-content;
+  overflow: clip;
+  z-index: 1;
+  flex-flow: column;
+  flex: none;
+  place-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 40px clamp(24px, 3vw, 44px) 60px;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.project-detail-kicker {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.project-detail-header-overlay h1 {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(48px, 6vw, 92px);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.05;
+}
+.project-detail-lead {
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(16px, 1.5vw, 18px);
+  max-width: 700px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.project-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 60px;
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 3vw, 44px);
+}
+.project-text-block {
+  margin-bottom: 60px;
+  max-width: 720px;
+}
+.project-text-block h3 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+.project-text-block p {
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.project-detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.meta-label {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.meta-value {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .project-detail-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .project-detail-meta {
+    order: -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 40px;
+  }
+}
+
+/* =========================================
+   Contact Page
+   ========================================= */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 64px);
+}
+.contact-sidebar {
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 3vw, 44px);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--line);
+}
+.contact-header {
+  margin-bottom: 80px;
+}
+.contact-header h1 {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(60px, 8vw, 110px);
+  margin: 16px 0 32px;
+  font-weight: 400;
+}
+.contact-intro {
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 400px;
+  line-height: 1.5;
+}
+.contact-details {
+  display: grid;
+  gap: 40px;
+}
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contact-label {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.contact-block a, .contact-block address {
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1.5;
+  font-style: normal;
+}
+.contact-social-links {
+  display: flex;
+  gap: 24px;
+}
+.contact-social-links a {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  color: var(--ink);
+}
+
+.contact-map {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 60vh;
+}
+.contact-map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.map-landmark {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  background: var(--paper);
+  padding: 24px;
+  border-radius: 4px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  min-width: 280px;
+}
+.landmark-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.landmark-label {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.landmark-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.map-landmark strong {
+  display: block;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.map-landmark p {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.map-landmark small {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  .contact-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .map-landmark {
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
   }
 }

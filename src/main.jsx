@@ -152,9 +152,9 @@ const processDetails = [
   {
     number: "01",
     title: "Listen",
-    intro: "Bắt đầu bằng sự tĩnh lặng: hiểu khu đất, bản brief và đời sống sẽ hiện diện trong không gian.",
+    intro: "Bắt đầu bằng sự tĩnh lặng: hiểu khu đất, nhu cầu và bối cảnh xung quanh.",
     caption:
-      "Mỗi dự án khởi đầu bằng những cuộc trò chuyện sâu: với khách hàng, với khu đất, với bối cảnh xung quanh. Chúng tôi quan sát ánh sáng, âm thanh và chuyển động trước khi vẽ.",
+      "Mỗi dự án khởi đầu bằng những buổi trao đổi sâu sắc, chúng tôi quan sát ánh sáng, âm thanh và chuyển động trước khi vẽ.",
     image:
       "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1800&q=90",
   },
@@ -163,7 +163,7 @@ const processDetails = [
     title: "Sketch",
     intro: "Trước kỹ thuật số là bàn tay. Ý tưởng được thử bằng mô hình, giấy, than và đường nét.",
     caption:
-      "Studio đầy giấy, mô hình bìa, mẫu wax và nét phác. Quá trình thủ công buộc chúng tôi suy nghĩ bằng tay, tìm ra những mối quan hệ phần mềm thường bỏ lỡ.",
+      "Quá trình làm việc tay giúp chúng tôi khám phá sâu các mối liên hệ không gian, tạo nền tảng vững chắc cho thiết kế số.",
     image:
       "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1800&q=90",
   },
@@ -172,7 +172,7 @@ const processDetails = [
     title: "Refine",
     intro: "Mỗi chi tiết được đặt câu hỏi: vật liệu, tỷ lệ và ánh sáng qua từng mùa.",
     caption:
-      "Chúng tôi làm mẫu vật liệu 1:1, thử hoàn thiện tại chỗ và mô phỏng ánh sáng ở nhiều thời điểm. Đây là lúc ý tưởng chuyển thành điều tất yếu.",
+      "Mẫu vật liệu thực tế và mô phỏng ánh sáng giúp chúng tôi kiểm chứng và hoàn thiện thiết kế.",
     image:
       "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1800&q=90",
   },
@@ -181,7 +181,7 @@ const processDetails = [
     title: "Realise",
     intro: "Chúng tôi theo sát công trường từ mẻ đổ đầu tiên đến hoàn thiện cuối cùng.",
     caption:
-      "Kiến trúc sư hiện diện xuyên suốt thi công, làm việc cùng đội ngũ thủ công để ý định thiết kế đi đến từng chi tiết. Công trình chỉ hoàn tất khi cảm giác trở nên tự nhiên.",
+      "Sự hiện diện của kiến trúc sư và đội ngũ thi công đảm bảo mỗi chi tiết được thực hiện đúng ý tưởng, tạo nên không gian sống tự nhiên.",
     image:
       "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=90",
   },
@@ -190,22 +190,6 @@ const processDetails = [
 function SiteFooter() {
   return (
     <footer className="site-close" id="contact">
-      <section className="press-block">
-        <h2>Press & Recognition</h2>
-        <article>
-          <p>“CHAM mở ra một ngôn ngữ kiến trúc điềm tĩnh — nơi công trình phục vụ cơ thể trước khi chạm đến thị giác.”</p>
-          <span>Elle Decoration<br />2026</span>
-        </article>
-        <article>
-          <p>“Koan House là một trong những dự án nhà ở được cân nhắc kỹ lưỡng nhất trong năm.”</p>
-          <span>ArchDaily<br />2025</span>
-        </article>
-        <article>
-          <p>“Cách họ làm việc chứng minh kiến trúc Việt Nam có thể vừa sâu rễ, vừa đương đại.”</p>
-          <span>Design Anthology<br />2024</span>
-        </article>
-      </section>
-
       <section className="close-grid">
         <div className="close-cell close-process">
           <h2>Process</h2>
@@ -260,6 +244,21 @@ function SiteFooter() {
 }
 
 function ProjectsPage() {
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filteredSelectedWorks = selectedWorks.filter(work => {
+    if (activeFilter === "All") return true;
+    if (work.title === "Koan House" && activeFilter === "Residential") return true;
+    if (work.title === "Atelier Courtyard" && activeFilter === "Interior") return true;
+    if (work.title === "River Gallery" && activeFilter === "Cultural") return true;
+    return false;
+  });
+
+  const filteredProjectRows = projectRows.filter(row => {
+    if (activeFilter === "All") return true;
+    return row[2] === activeFilter;
+  });
+
   return (
     <>
       <section className="projects-intro reveal-up">
@@ -272,8 +271,13 @@ function ProjectsPage() {
       </section>
 
       <section className="project-filters reveal-up" aria-label="Project filters">
-        {["All", "Commercial", "Landscape", "Cultural", "Interior", "Residential"].map((filter, index) => (
-          <button className={index === 0 ? "active" : ""} type="button" key={filter}>
+        {["All", "Commercial", "Landscape", "Cultural", "Interior", "Residential"].map((filter) => (
+          <button 
+            className={activeFilter === filter ? "active" : ""} 
+            type="button" 
+            key={filter}
+            onClick={() => setActiveFilter(filter)}
+          >
             {filter}
           </button>
         ))}
@@ -281,16 +285,16 @@ function ProjectsPage() {
 
       <section className="selected projects-gallery">
         <div className="selected-gallery">
-          {selectedWorks.map((work) => (
+          {filteredSelectedWorks.map((work) => (
             <article className={`work-pair ${work.reverse ? "work-pair-reverse" : ""}`} key={work.title}>
-              <a className="work-tile work-tile-large" href="#project-list">
+              <a className="work-tile work-tile-large" href="/project/koan-house">
                 <img src={work.largeImage} alt={work.title} />
                 <span className="work-caption">
                   <strong>{work.title}</strong>
                   <small>{work.meta}</small>
                 </span>
               </a>
-              <a className="work-tile work-tile-small" href="#project-list">
+              <a className="work-tile work-tile-small" href="/project/koan-house">
                 <img src={work.smallImage} alt={`${work.title} detail`} />
                 <span className="work-caption">
                   <strong>{work.title}</strong>
@@ -303,8 +307,8 @@ function ProjectsPage() {
       </section>
 
       <section className="projects-table" id="project-list">
-        {projectRows.map(([number, name, type, place, year]) => (
-          <a className="projects-table-row reveal-up" href="#project-list" key={name}>
+        {filteredProjectRows.map(([number, name, type, place, year]) => (
+          <a className="projects-table-row reveal-up" href="/project/koan-house" key={name}>
             <span>{number}</span>
             <strong>{name}</strong>
             <em>{type}</em>
@@ -359,11 +363,353 @@ function ProcessPage() {
       <section className="ready-section reveal-up">
         <h2>Ready to begin?</h2>
         <p>Mỗi dự án bắt đầu bằng một cuộc trò chuyện. Hãy kể cho chúng tôi về tầm nhìn của bạn.</p>
-        <a className="outline-link" href="/#contact">
+        <a className="outline-link" href="/contact">
           Get in touch <MoveRight size={18} />
         </a>
       </section>
       <SiteFooter />
+    </>
+  );
+}
+
+function ArticleDetailPage() {
+  return (
+    <>
+      <section className="project-detail-hero reveal-up">
+        <img
+          src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=2200&q=90"
+          alt="Phong thủy kiến trúc"
+        />
+        <div className="project-detail-header-overlay">
+          <div className="project-detail-kicker">CHUYÊN MỤC · KIẾN THỨC · 2026</div>
+          <h1>Phong thủy kiến trúc hiện đại khác mê tín như thế nào?</h1>
+          <p className="project-detail-lead">
+            Sự cân bằng của ánh sáng, thông gió và tỷ lệ không gian là nền tảng của phong thủy khoa học, không phải những giáo điều cứng nhắc.
+          </p>
+        </div>
+      </section>
+
+      <section className="project-detail-content">
+        <div className="project-detail-main">
+          <div className="project-text-block reveal-up">
+            <h3>Bản chất của Phong thủy</h3>
+            <p>
+              Từ xa xưa, phong thủy (gió và nước) thực chất là sự quan sát tinh tế về môi trường sống. Người xưa đúc kết cách xây nhà để tránh gió độc, đón nắng ấm, và đảm bảo nguồn nước sạch. Trong kiến trúc hiện đại, phong thủy là vật lý kiến trúc: là việc tổ chức không gian sao cho vi khí hậu trong nhà luôn ở mức tối ưu.
+            </p>
+            <p>
+              Sự nhầm lẫn lớn nhất hiện nay là biến phong thủy thành một hệ thống tín ngưỡng cứng nhắc, nơi con người phụ thuộc vào những vật phẩm may mắn thay vì cải thiện chất lượng cốt lõi của không gian sống.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Khí (Năng lượng) là Thông gió tự nhiên</h3>
+            <p>
+              Khái niệm "Tụ khí" hay "Tán khí" thực chất nói về luồng không khí di chuyển trong nhà. Một ngôi nhà "tụ khí" tốt là nơi không khí tươi được luân chuyển đều đặn, không bị quẩn (gây ngột ngạt) và không bị hút tuột đi quá nhanh (gây gió lùa). 
+            </p>
+            <p>
+              Thay vì dùng bình phong hay linh vật để cản "sát khí", kiến trúc hiện đại giải quyết bằng cách tính toán hướng gió, bố trí hệ thống lam chắn, cửa đón gió (inlet) và cửa thoát gió (outlet) hợp lý dựa trên biểu đồ nhiệt đới.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Ánh sáng và Nhịp sinh học</h3>
+            <p>
+              "Minh đường tụ thủy" không chỉ là hồ nước trước nhà. Nó ám chỉ một không gian mở phía trước để đón nhận ánh sáng phản xạ, giúp chiếu sáng sâu vào công trình mà không gây chói. Ánh sáng tự nhiên điều hòa nhịp sinh học của con người (Circadian rhythm), trực tiếp ảnh hưởng đến chất lượng giấc ngủ và tâm trạng.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Kết luận</h3>
+            <p>
+              Phong thủy không phải là sự mê tín áp đặt con người. Phong thủy chân chính là sự thấu hiểu và tôn trọng bối cảnh tự nhiên, từ đó kiến tạo nên những "ngưỡng chạm" tĩnh lặng — nơi con người, vật liệu và môi trường giao hòa một cách êm ái.
+            </p>
+          </div>
+        </div>
+
+        <aside className="project-detail-meta reveal-up">
+          <div className="meta-item">
+            <span className="meta-label">CATEGORY</span>
+            <span className="meta-value">Kiến thức</span>
+          </div>
+          <div className="meta-item">
+            <span className="meta-label">AUTHOR</span>
+            <span className="meta-value">Minh Tran</span>
+          </div>
+          <div className="meta-item">
+            <span className="meta-label">DATE</span>
+            <span className="meta-value">Oct 2026</span>
+          </div>
+        </aside>
+      </section>
+
+      <SiteFooter />
+    </>
+  );
+}
+
+function ArticlesPage() {
+  return (
+    <>
+      <section className="projects-intro reveal-up">
+        <p>Insights</p>
+        <h1>Bài Viết.</h1>
+        <p>
+          Những suy nghĩ, góc nhìn và nghiên cứu của chúng tôi về kiến trúc, không gian và môi trường sống.
+        </p>
+      </section>
+
+      <section className="projects-table" id="article-list">
+        <a className="projects-table-row reveal-up" href="/article/phong-thuy-kien-truc">
+          <span>01</span>
+          <strong>Phong thủy kiến trúc hiện đại khác mê tín như thế nào?</strong>
+          <em>Kiến thức</em>
+          <small>Minh Tran</small>
+          <time>Oct 2026</time>
+        </a>
+        <a className="projects-table-row reveal-up" href="/article/phong-thuy-kien-truc">
+          <span>02</span>
+          <strong>Sự tĩnh lặng của vật liệu thô: Bê tông trần và Gỗ tự nhiên</strong>
+          <em>Vật liệu</em>
+          <small>Linh Nguyen</small>
+          <time>Sep 2026</time>
+        </a>
+        <a className="projects-table-row reveal-up" href="/article/phong-thuy-kien-truc">
+          <span>03</span>
+          <strong>Thiết kế ánh sáng gián tiếp trong không gian nhiệt đới ẩm</strong>
+          <em>Nghiên cứu</em>
+          <small>An Hoang</small>
+          <time>Aug 2026</time>
+        </a>
+      </section>
+
+      <SiteFooter />
+    </>
+  );
+}
+
+function ProjectDetailPage() {
+  return (
+    <>
+      <section className="project-detail-hero reveal-up">
+        <img
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90"
+          alt="Kōan House"
+        />
+        <div className="project-detail-header-overlay">
+          <div className="project-detail-kicker">RESIDENTIAL · TOKYO, JP · 2026</div>
+          <h1>Kōan House</h1>
+          <p className="project-detail-lead">
+            A meditative residence that dissolves the boundary between interior and garden. Raw concrete meets shaded timber.
+          </p>
+        </div>
+      </section>
+
+      <section className="project-detail-content">
+        <div className="project-detail-main">
+          <div className="project-text-block reveal-up">
+            <h3>Overview</h3>
+            <p>
+              Kōan House is a private residence situated on the edge of a forested hillside in the outskirts of Tokyo. 
+              The brief was simple: a home for two people who wanted to live with less. What emerged was a building that 
+              treats silence as a material — as considered and load-bearing as the concrete that forms its walls.
+            </p>
+            <p>
+              The name derives from the Zen concept of a kōan: a paradox with no logical answer, designed to exhaust the 
+              thinking mind and open something quiet beneath. The house is built on a similar logic. Every decision was made by subtraction.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Design</h3>
+            <p>
+              The building is a single horizontal volume, low and continuous, set into the slope so that from the road above, 
+              it disappears. The facade is almost entirely closed to the street — a long uninterrupted plane of board-formed 
+              concrete, broken only by a narrow slot of glazing that runs the full width of the upper level.
+            </p>
+            <p>
+              Entry is through a compressed, threshold, a dark corridor that forces the body to slow down before revealing 
+              the main living space. This transition — compression before release — is the defining spatial experience of the house.
+            </p>
+            <p>
+              The interior is organized around a single large room that opens entirely to the garden through floor-to-ceiling glazing. 
+              The boundary between inside and outside is treated as a threshold rather than a barrier. In summer, the glass disappears. 
+              In winter, it frames the garden like a slow painting.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Materials</h3>
+            <p>
+              The material palette was deliberately constrained: raw board-formed concrete, shaded cedar, and polished black stone. 
+              No paint. No plaster. No applied finish. Every surface is what it is.
+            </p>
+            <p>
+              The cedar was sourced from a single forest in Nagano Prefecture and allowed to age in place. The intent was not to arrest 
+              time, but to let it show. The concrete was poured in a single continuous process. It is imperfect, retaining the grain of the 
+              wood formwork. The floor reads as a single dark plane.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Light</h3>
+            <p>
+              Light was the primary design tool. The building was modeled across every hour of every season to ensure a range of 
+              natural light in each space. The narrow slot window on the upper facade admits morning light to the private spaces. 
+              The main living area, facing south, acts as a sundial. The garden-facing glazing admits afternoon light that deepens as the day progresses.
+            </p>
+            <p>
+              There are no overhead lights in the main living space. Illumination comes entirely from indirect sources — light reflected 
+              from surfaces, light borrowed from adjacent rooms. The house grows darker as evening comes. This was intentional.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Outcome</h3>
+            <p>
+              Kōan House received the Japan Institute of Architects Residential Award in 2027. More importantly, its occupants 
+              report that they sleep better than they ever have. Sometimes less is enough.
+            </p>
+          </div>
+        </div>
+
+        <aside className="project-detail-meta reveal-up">
+          <div className="meta-item">
+            <span className="meta-label">TYPE</span>
+            <span className="meta-value">Residential</span>
+          </div>
+          <div className="meta-item">
+            <span className="meta-label">LOCATION</span>
+            <span className="meta-value">Tokyo, JP</span>
+          </div>
+          <div className="meta-item">
+            <span className="meta-label">YEAR</span>
+            <span className="meta-value">2026</span>
+          </div>
+        </aside>
+      </section>
+
+      <SiteFooter />
+    </>
+  );
+}
+
+function ContactPage() {
+  return (
+    <>
+      <section className="contact-layout">
+        <div className="contact-sidebar">
+          <div className="contact-header reveal-up">
+            <p className="section-label">GET IN TOUCH</p>
+            <h1>Contact.</h1>
+            <p className="contact-intro">
+              New projects, collaborations, and press enquiries — we'd love to hear from you.
+            </p>
+          </div>
+
+          <div className="contact-details reveal-up">
+            <div className="contact-block">
+              <span className="contact-label">CONTACT</span>
+              <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
+            </div>
+            
+            <div className="contact-block">
+              <span className="contact-label">NEW PROJECTS</span>
+              <a href="mailto:projects@chamgroup.vn">projects@chamgroup.vn</a>
+            </div>
+
+            <div className="contact-block">
+              <span className="contact-label">PRESS</span>
+              <a href="mailto:press@chamgroup.vn">press@chamgroup.vn</a>
+            </div>
+
+            <div className="contact-block">
+              <span className="contact-label">PHONE</span>
+              <a href="tel:+4930000000">+49 30 000 000</a>
+            </div>
+
+            <div className="contact-block">
+              <span className="contact-label">ADDRESS</span>
+              <address>
+                CHÂM GROUP<br />
+                Quận 1, TP. Hồ Chí Minh<br />
+                Việt Nam
+              </address>
+            </div>
+
+            <div className="contact-block">
+              <span className="contact-label">SOCIAL</span>
+              <div className="contact-social-links">
+                <a href="/">X</a>
+                <a href="/">LINKEDIN</a>
+                <a href="/">BEHANCE</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="contact-map reveal-up">
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80" alt="Map of Berlin" className="map-image" style={{filter: 'grayscale(100%) contrast(1.2)'}} />
+          <div className="map-landmark">
+            <div className="landmark-header">
+              <span className="landmark-label">LANDMARK</span>
+              <button className="landmark-close">×</button>
+            </div>
+            <strong>CHÂM GROUP</strong>
+            <p>Auguststraße 26, 10117 Berlin, Germany</p>
+            <small>📍 Berlin</small>
+          </div>
+        </div>
+      </section>
+
+      <section className="close-grid" style={{borderTop: '1px solid var(--line)'}}>
+        <div className="close-cell close-process">
+          <h2>Process</h2>
+          <p>We design from the inside out — understanding how people move, gather, and rest before the first line is drawn.</p>
+          <p>Architecture is not the making of objects. It is the making of experience.</p>
+        </div>
+
+        <div className="close-cell close-services">
+          <h2>Services</h2>
+          <ul>
+            <li>Architecture</li>
+            <li>Interior Design</li>
+            <li>Landscape</li>
+            <li>Exhibition Design</li>
+          </ul>
+        </div>
+
+        <div className="close-cell close-recognition">
+          <h2>Recognition</h2>
+          <div className="stat-grid">
+            <span><strong>18</strong>Projects</span>
+            <span><strong>12</strong>Years</span>
+            <span><strong>21</strong>Awards</span>
+            <span><strong>5</strong>Countries</span>
+          </div>
+        </div>
+
+        <div className="close-cell close-contact">
+          <h2>Contact</h2>
+          <address>
+            <a href="mailto:hello@studionave.com">hello@studionave.com</a>
+            <a href="tel:+4930000000">+49 30 000 000</a>
+            <span>Mitte, Berlin DE 10117</span>
+          </address>
+          <a className="new-enquiry" href="mailto:hello@studionave.com">
+            New enquiries <MoveRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      <section className="footer-bottom" style={{borderTop: '1px solid var(--line)'}}>
+        <span>CHÂM GROUP © 2026</span>
+        <span>Architecture & Interior Design</span>
+        <span>
+          <a href="/">X</a>
+          <a href="/">LinkedIn</a>
+          <a href="/">Behance</a>
+        </span>
+      </section>
     </>
   );
 }
@@ -474,6 +820,10 @@ function App() {
   const isStudioPage = window.location.pathname === "/studio";
   const isProcessPage = window.location.pathname === "/process";
   const isProjectsPage = window.location.pathname === "/projects";
+  const isContactPage = window.location.pathname === "/contact";
+  const isProjectDetailPage = window.location.pathname.startsWith("/project/");
+  const isArticlesPage = window.location.pathname === "/articles";
+  const isArticleDetailPage = window.location.pathname.startsWith("/article/");
 
   useEffect(() => {
     const updateFeaturedText = () => {
@@ -640,11 +990,12 @@ function App() {
           <small>GROUP</small>
         </a>
         <nav className="nav-links" aria-label="Primary navigation">
-          <a className={!isStudioPage && !isProcessPage && !isProjectsPage ? "active" : ""} href="/">Index</a>
+          <a className={!isStudioPage && !isProcessPage && !isProjectsPage && !isContactPage && !isProjectDetailPage && !isArticlesPage && !isArticleDetailPage ? "active" : ""} href="/">Index</a>
           <a className={isStudioPage ? "active" : ""} href="/studio">Studio</a>
           <a className={isProcessPage ? "active" : ""} href="/process">Process</a>
-          <a className={isProjectsPage ? "active" : ""} href="/projects">Projects</a>
-          <a href="/#contact">Contact</a>
+          <a className={isProjectsPage || isProjectDetailPage ? "active" : ""} href="/projects">Projects</a>
+          <a className={isArticlesPage || isArticleDetailPage ? "active" : ""} href="/articles">Bài Viết</a>
+          <a className={isContactPage ? "active" : ""} href="/contact">Contact</a>
         </nav>
         <button
           className="menu-button"
@@ -678,7 +1029,8 @@ function App() {
           <a href="/studio" onClick={() => setMenuOpen(false)}>Studio</a>
           <a href="/process" onClick={() => setMenuOpen(false)}>Process</a>
           <a href="/projects" onClick={() => setMenuOpen(false)}>Projects</a>
-          <a href="/#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a href="/articles" onClick={() => setMenuOpen(false)}>Bài Viết</a>
+          <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </div>
         <div className="menu-footer">
           <span>CHAM GROUP © 2026</span>
@@ -686,7 +1038,15 @@ function App() {
         </div>
       </nav>
 
-      {isProjectsPage ? (
+      {isArticleDetailPage ? (
+        <ArticleDetailPage />
+      ) : isProjectDetailPage ? (
+        <ProjectDetailPage />
+      ) : isContactPage ? (
+        <ContactPage />
+      ) : isArticlesPage ? (
+        <ArticlesPage />
+      ) : isProjectsPage ? (
         <ProjectsPage />
       ) : isProcessPage ? (
         <ProcessPage />
@@ -704,13 +1064,13 @@ function App() {
               Practice.
             </h1>
           </div>
-          <a className="text-link" href="#projects">
+          <a className="text-link" href="/projects">
             All projects <ArrowUpRight size={18} />
           </a>
         </div>
         <div className="hero-image">
           <img src={projects[0].image} alt="CHAM Group hospitality destination" />
-          <a className="hero-caption" href="#featured">
+          <a className="hero-caption" href="/project/koan-house">
             <span>Koan House</span>
             <span>Residential</span>
             <span>2026</span>
@@ -722,7 +1082,7 @@ function App() {
         <div className="section-label">All projects</div>
         <div className="project-list">
           {projects.map((project) => (
-            <a className="project-row" href="#featured" key={project.name}>
+            <a className="project-row" href="/project/koan-house" key={project.name}>
               <span>{project.number}</span>
               <strong>{project.name}</strong>
               <em>{project.type}</em>
@@ -749,7 +1109,7 @@ function App() {
               <h3>{project.title}</h3>
               <p>{project.body}</p>
             </div>
-            <a className="outline-link" href="#contact" data-featured-button>
+            <a className="outline-link" href="/project/koan-house" data-featured-button>
               Explore project <MoveRight size={18} />
             </a>
           </div>
@@ -787,14 +1147,14 @@ function App() {
         <div className="selected-gallery">
           {selectedWorks.map((work) => (
             <article className={`work-pair ${work.reverse ? "work-pair-reverse" : ""}`} key={work.title}>
-              <a className="work-tile work-tile-large" href="#featured">
+              <a className="work-tile work-tile-large" href="/project/koan-house">
                 <img src={work.largeImage} alt={work.title} />
                 <span className="work-caption">
                   <strong>{work.title}</strong>
                   <small>{work.meta}</small>
                 </span>
               </a>
-              <a className="work-tile work-tile-small" href="#featured">
+              <a className="work-tile work-tile-small" href="/project/koan-house">
                 <img src={work.smallImage} alt={`${work.title} detail`} />
                 <span className="work-caption">
                   <strong>{work.title}</strong>
@@ -803,6 +1163,27 @@ function App() {
               </a>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="press-block">
+        <h2>Bài Viết</h2>
+        <a href="/article/phong-thuy-kien-truc" className="press-article">
+          <p>“Phong thủy kiến trúc hiện đại khác mê tín như thế nào? Sự cân bằng của ánh sáng và tỷ lệ không gian là nền tảng.”</p>
+          <span>Oct 2026<br />Kiến thức</span>
+        </a>
+        <a href="/article/phong-thuy-kien-truc" className="press-article">
+          <p>“Sự tĩnh lặng của vật liệu thô: Cách bê tông trần và gỗ tự nhiên tạo nên cảm giác thuộc về.”</p>
+          <span>Sep 2026<br />Vật liệu</span>
+        </a>
+        <a href="/article/phong-thuy-kien-truc" className="press-article">
+          <p>“Thiết kế ánh sáng gián tiếp: Mang nhịp sinh học tự nhiên vào không gian nhiệt đới ẩm.”</p>
+          <span>Aug 2026<br />Nghiên cứu</span>
+        </a>
+        <div style={{ marginTop: '40px', padding: '0 clamp(24px, 3vw, 44px)', paddingBottom: '60px' }}>
+          <a className="outline-link" href="/articles">
+            Xem thêm <MoveRight size={18} />
+          </a>
         </div>
       </section>
 
