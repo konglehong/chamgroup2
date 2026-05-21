@@ -3,51 +3,97 @@ import { createRoot } from "react-dom/client";
 import { ArrowUpRight, Menu, MoveRight } from "lucide-react";
 import "./styles.css";
 
+const services = [
+  {
+    title: "Phong thủy hiện đại",
+    body: "Tư vấn bố cục, ánh sáng, thông gió và dòng di chuyển theo tinh thần phong thủy khoa học, phù hợp nhịp sống hiện đại.",
+  },
+  {
+    title: "Nội thất đa phong cách",
+    body: "Thiết kế nội thất theo gu sống riêng: tối giản, nhiệt đới, hiện đại, boutique hoặc pha trộn nhiều lớp vật liệu.",
+  },
+  {
+    title: "CGI / phối cảnh 3D",
+    body: "Diễn họa không gian bằng hình ảnh 3D rõ vật liệu, ánh sáng và cảm xúc để khách hàng hình dung trước khi thi công.",
+  },
+  {
+    title: "Thi công trọn gói",
+    body: "Quản lý thi công từ hồ sơ, vật liệu, xưởng sản xuất đến hoàn thiện công trình với tiến độ và ngân sách rõ ràng.",
+  },
+];
+
 const projects = [
   {
     number: "01",
-    name: "Cham Heritage Resort",
-    type: "Hospitality",
-    place: "Hoi An, VN",
+    name: "Căn hộ hợp phong thủy",
+    type: services[0].title,
+    place: "TP. Hồ Chí Minh",
     year: "2026",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=90",
   },
   {
     number: "02",
-    name: "Lagoon Villas",
-    type: "Residential",
-    place: "Da Nang, VN",
+    name: "Nhà phố đa phong cách",
+    type: services[1].title,
+    place: "Đà Nẵng",
     year: "2025",
     image:
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=90",
   },
   {
     number: "03",
-    name: "Riverfront Quarter",
-    type: "Mixed-use",
-    place: "Ho Chi Minh City, VN",
+    name: "Bộ phối cảnh biệt thự",
+    type: services[2].title,
+    place: "Hà Nội",
     year: "2025",
     image:
       "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1800&q=90",
   },
   {
     number: "04",
-    name: "Cham Wellness Village",
-    type: "Wellness",
-    place: "Nha Trang, VN",
+    name: "Căn hộ bàn giao trọn gói",
+    type: services[3].title,
+    place: "Nha Trang",
     year: "2024",
     image:
       "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1800&q=90",
   },
   {
     number: "05",
-    name: "Cultural Promenade",
-    type: "Public realm",
-    place: "Hue, VN",
+    name: "Studio sống linh hoạt",
+    type: services[1].title,
+    place: "Huế",
     year: "2024",
     image:
       "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1800&q=90",
+  },
+  {
+    number: "06",
+    name: "Nhà phố hoàn thiện chìa khóa trao tay",
+    type: services[3].title,
+    place: "TP. Hồ Chí Minh",
+    year: "2024",
+    image:
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=90",
+  },
+  {
+    number: "07",
+    name: "Căn hộ cải tạo nhanh",
+    type: services[3].title,
+    place: "Hà Nội",
+    year: "2023",
+    image:
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1800&q=90",
+  },
+  {
+    number: "08",
+    name: "Penthouse bàn giao trọn gói",
+    type: services[3].title,
+    place: "Đà Nẵng",
+    year: "2023",
+    image:
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1800&q=90",
   },
 ];
 
@@ -60,89 +106,92 @@ const process = [
 
 const featuredProjects = [
   {
-    title: "Where the city meets the fjord.",
-    eyebrow: "Featured — Oslo Cultural Centre",
+    title: "Phong thủy hiện đại, không mê tín.",
+    eyebrow: "Dịch vụ nổi bật — Phong thủy hiện đại",
     body:
-      "A civic building conceived as a series of cascading public terraces stepping down toward the water. Each level is a space for gathering, performance, and pause — architecture as threshold between urban life and open landscape.",
+      "Chúng tôi đọc hướng nắng, hướng gió, thói quen sinh hoạt và tỷ lệ không gian để tạo nên bố cục cân bằng, thoáng khí và dễ sống.",
     image: projects[2].image,
-    imageAlt: "Large cultural architecture project",
+    imageAlt: "Không gian nội thất hiện đại",
   },
   {
-    title: "Light, steel, and seven floors of intent.",
-    eyebrow: "Featured — Lichten Office HQ",
+    title: "Một gu sống, nhiều lớp phong cách.",
+    eyebrow: "Dịch vụ nổi bật — Nội thất đa phong cách",
     body:
-      "Seven floors of glass and dark steel built around a central atrium that pulls daylight through the entire structure. Designed for a team that wanted a headquarters as precise as their thinking.",
+      "Từ tối giản, hiện đại đến nhiệt đới hoặc boutique, mỗi concept được phát triển theo cá tính gia chủ, vật liệu thật và ngân sách rõ ràng.",
     image: projects[3].image,
-    imageAlt: "Minimal modern office architecture",
+    imageAlt: "Nội thất nhiều lớp vật liệu",
     reverse: true,
   },
   {
-    title: "A house that breathes.",
-    eyebrow: "Featured — Koan House",
+    title: "Nhìn thấy không gian trước khi bắt đầu.",
+    eyebrow: "Dịch vụ nổi bật — CGI / phối cảnh 3D",
     body:
-      "Raw concrete, shaded timber, and planted thresholds form a quiet residence where the boundaries between shelter, garden, and daily ritual are deliberately softened.",
+      "Phối cảnh 3D giúp kiểm chứng ánh sáng, màu sắc, vật liệu và cảm giác tổng thể trước khi bước vào sản xuất và thi công.",
     image: projects[0].image,
-    imageAlt: "Concrete residential architecture with garden",
+    imageAlt: "Phối cảnh 3D nội thất",
   },
 ];
 
 const selectedWorks = [
   {
-    title: "Koan House",
-    meta: "Tokyo, JP / 2026",
+    title: "Căn hộ hợp phong thủy",
+    meta: "TP. Hồ Chí Minh / 2026",
     largeImage: projects[0].image,
     smallImage: projects[1].image,
   },
   {
-    title: "Atelier Courtyard",
-    meta: "Da Nang, VN / 2025",
+    title: "Nhà phố đa phong cách",
+    meta: "Đà Nẵng / 2025",
     largeImage: projects[3].image,
     smallImage: projects[4].image,
     reverse: true,
   },
   {
-    title: "River Gallery",
-    meta: "Ho Chi Minh City, VN / 2025",
+    title: "Bộ phối cảnh biệt thự",
+    meta: "Hà Nội / 2025",
     largeImage: projects[2].image,
     smallImage: projects[0].image,
   },
+  {
+    title: "Nhà phố hoàn thiện chìa khóa trao tay",
+    meta: "TP. Hồ Chí Minh / 2024",
+    largeImage: projects[5].image,
+    smallImage: projects[6].image,
+    reverse: true,
+  },
 ];
 
-const projectRows = [
-  ["01", "Koan House", "Residential", "Tokyo, JP", "2026"],
-  ["02", "Steinhaus Pavilion", "Interior", "Oslo, NO", "2025"],
-  ["03", "Grafjell Retreat", "Interior", "Bergen, NO", "2025"],
-  ["04", "Lichten Office HQ", "Commercial", "Berlin, DE", "2024"],
-  ["05", "Oslo Cultural Centre", "Cultural", "Oslo, NO", "2024"],
-  ["06", "Murano Residence", "Interior", "Venice, IT", "2023"],
-];
+const homeProjectRows = projects.map((project) => ({
+  ...project,
+  tags: [project.type, project.place],
+}));
 
 const teamMembers = [
   {
     name: "Minh Tran",
-    role: "Founding Partner",
-    focus: "Concept & Design Direction",
+    role: "Đồng sáng lập",
+    focus: "Định hướng concept",
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Linh Nguyen",
-    role: "Partner",
-    focus: "Interior & Landscape",
+    role: "Cộng sự thiết kế",
+    focus: "Nội thất đa phong cách",
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "An Hoang",
-    role: "Project Architect",
-    focus: "Cultural & Commercial",
+    role: "Diễn họa 3D",
+    focus: "CGI / phối cảnh 3D",
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Mai Pham",
-    role: "Senior Architect",
-    focus: "Residential Projects",
+    role: "Quản lý thi công",
+    focus: "Thi công trọn gói",
     image:
       "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85",
   },
@@ -151,7 +200,7 @@ const teamMembers = [
 const processDetails = [
   {
     number: "01",
-    title: "Listen",
+    title: "Lắng nghe",
     intro: "Bắt đầu bằng sự tĩnh lặng: hiểu khu đất, nhu cầu và bối cảnh xung quanh.",
     caption:
       "Mỗi dự án khởi đầu bằng những buổi trao đổi sâu sắc, chúng tôi quan sát ánh sáng, âm thanh và chuyển động trước khi vẽ.",
@@ -160,7 +209,7 @@ const processDetails = [
   },
   {
     number: "02",
-    title: "Sketch",
+    title: "Phác thảo",
     intro: "Trước kỹ thuật số là bàn tay. Ý tưởng được thử bằng mô hình, giấy, than và đường nét.",
     caption:
       "Quá trình làm việc tay giúp chúng tôi khám phá sâu các mối liên hệ không gian, tạo nền tảng vững chắc cho thiết kế số.",
@@ -169,7 +218,7 @@ const processDetails = [
   },
   {
     number: "03",
-    title: "Refine",
+    title: "Tinh chỉnh",
     intro: "Mỗi chi tiết được đặt câu hỏi: vật liệu, tỷ lệ và ánh sáng qua từng mùa.",
     caption:
       "Mẫu vật liệu thực tế và mô phỏng ánh sáng giúp chúng tôi kiểm chứng và hoàn thiện thiết kế.",
@@ -178,7 +227,7 @@ const processDetails = [
   },
   {
     number: "04",
-    title: "Realise",
+    title: "Hiện thực",
     intro: "Chúng tôi theo sát công trường từ mẻ đổ đầu tiên đến hoàn thiện cuối cùng.",
     caption:
       "Sự hiện diện của kiến trúc sư và đội ngũ thi công đảm bảo mỗi chi tiết được thực hiện đúng ý tưởng, tạo nên không gian sống tự nhiên.",
@@ -192,23 +241,22 @@ function SiteFooter() {
     <footer className="site-close" id="contact">
       <section className="close-grid">
         <div className="close-cell close-process">
-          <h2>Process</h2>
-          <p>Chúng tôi thiết kế từ bên trong ra ngoài — bắt đầu bằng cách con người di chuyển, tụ họp và nghỉ ngơi.</p>
-          <p>Kiến trúc không chỉ là tạo vật thể. Đó là kiến tạo trải nghiệm sống.</p>
+          <h2>Quy trình</h2>
+          <p>Chúng tôi bắt đầu bằng nhu cầu sống thật: thói quen, ngân sách, hiện trạng và cảm giác mà gia chủ muốn giữ lại.</p>
+          <p>Từ tư vấn phong thủy, concept nội thất, phối cảnh 3D đến thi công, mọi bước được nối liền để hạn chế sai lệch.</p>
         </div>
 
         <div className="close-cell close-services">
-          <h2>Services</h2>
+          <h2>Dịch vụ</h2>
           <ul>
-            <li>Architecture</li>
-            <li>Interior Design</li>
-            <li>Landscape</li>
-            <li>Hospitality Concept</li>
+            {services.map((service) => (
+              <li key={service.title}>{service.title}</li>
+            ))}
           </ul>
         </div>
 
         <div className="close-cell close-recognition">
-          <h2>Recognition</h2>
+          <h2>Dấu mốc</h2>
           <div className="stat-grid">
             <span><strong>18</strong>Dự án</span>
             <span><strong>12</strong>Năm</span>
@@ -218,21 +266,21 @@ function SiteFooter() {
         </div>
 
         <div className="close-cell close-contact">
-          <h2>Contact</h2>
+          <h2>Liên hệ</h2>
           <address>
             <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
             <a href="tel:+842800000000">+84 28 0000 0000</a>
             <span>Quận 1, TP. Hồ Chí Minh</span>
           </address>
           <a className="new-enquiry" href="mailto:hello@chamgroup.vn">
-            New enquiries <MoveRight size={18} />
+            Gửi yêu cầu <MoveRight size={18} />
           </a>
         </div>
       </section>
 
       <section className="footer-bottom">
         <span>CHAM GROUP © 2026</span>
-        <span>Architecture & Interior Design</span>
+        <span>Phong thủy · Nội thất · CGI · Thi công</span>
         <span>
           <a href="/">X</a>
           <a href="/">LinkedIn</a>
@@ -244,34 +292,30 @@ function SiteFooter() {
 }
 
 function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("Tất cả");
 
   const filteredSelectedWorks = selectedWorks.filter(work => {
-    if (activeFilter === "All") return true;
-    if (work.title === "Koan House" && activeFilter === "Residential") return true;
-    if (work.title === "Atelier Courtyard" && activeFilter === "Interior") return true;
-    if (work.title === "River Gallery" && activeFilter === "Cultural") return true;
+    if (activeFilter === "Tất cả") return true;
+    if (work.title === "Căn hộ hợp phong thủy" && activeFilter === services[0].title) return true;
+    if (work.title === "Nhà phố đa phong cách" && activeFilter === services[1].title) return true;
+    if (work.title === "Bộ phối cảnh biệt thự" && activeFilter === services[2].title) return true;
+    if (work.title === "Nhà phố hoàn thiện chìa khóa trao tay" && activeFilter === services[3].title) return true;
     return false;
-  });
-
-  const filteredProjectRows = projectRows.filter(row => {
-    if (activeFilter === "All") return true;
-    return row[2] === activeFilter;
   });
 
   return (
     <>
       <section className="projects-intro reveal-up">
-        <p>Projects</p>
-        <h1>Selected Works.</h1>
+        <p>Dự án</p>
+        <h1>Dự án chọn lọc.</h1>
         <p>
-          Một tuyển chọn các dự án nhà ở, văn hóa và thương mại — được định hình
-          bởi bối cảnh, vật liệu và sự chính xác trong không gian.
+          Một tuyển chọn các dự án phong thủy, nội thất, phối cảnh 3D và thi công
+          được phát triển theo nhu cầu sống thật của từng gia chủ.
         </p>
       </section>
 
-      <section className="project-filters reveal-up" aria-label="Project filters">
-        {["All", "Commercial", "Landscape", "Cultural", "Interior", "Residential"].map((filter) => (
+      <section className="project-filters reveal-up" aria-label="Bộ lọc dự án">
+        {["Tất cả", ...services.map((service) => service.title)].map((filter) => (
           <button 
             className={activeFilter === filter ? "active" : ""} 
             type="button" 
@@ -295,7 +339,7 @@ function ProjectsPage() {
                 </span>
               </a>
               <a className="work-tile work-tile-small" href="/project/koan-house">
-                <img src={work.smallImage} alt={`${work.title} detail`} />
+                <img src={work.smallImage} alt={`Chi tiết ${work.title}`} />
                 <span className="work-caption">
                   <strong>{work.title}</strong>
                   <small>{work.meta}</small>
@@ -304,18 +348,6 @@ function ProjectsPage() {
             </article>
           ))}
         </div>
-      </section>
-
-      <section className="projects-table" id="project-list">
-        {filteredProjectRows.map(([number, name, type, place, year]) => (
-          <a className="projects-table-row reveal-up" href="/project/koan-house" key={name}>
-            <span>{number}</span>
-            <strong>{name}</strong>
-            <em>{type}</em>
-            <small>{place}</small>
-            <time>{year}</time>
-          </a>
-        ))}
       </section>
 
       <SiteFooter />
@@ -327,8 +359,8 @@ function ProcessPage() {
   return (
     <>
       <section className="process-page-intro reveal-up">
-        <p>Methodology</p>
-        <h1>Our Process.</h1>
+        <p>Quy trình</p>
+        <h1>Cách chúng tôi làm việc.</h1>
         <p>
           Quy trình của chúng tôi không tuyến tính. Mỗi giai đoạn soi sáng cho giai đoạn kế tiếp,
           và đôi khi quay lại điểm bắt đầu để làm rõ điều cốt lõi.
@@ -338,7 +370,7 @@ function ProcessPage() {
       <section className="process-hero-image reveal-up">
         <img
           src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2200&q=90"
-          alt="Architecture team reviewing drawings"
+          alt="Đội ngũ xem bản vẽ và phối cảnh nội thất"
         />
       </section>
 
@@ -353,7 +385,7 @@ function ProcessPage() {
               </div>
             </div>
             <div className="process-step-media">
-              <img className="reveal-up" src={step.image} alt={`${step.title} process`} />
+              <img className="reveal-up" src={step.image} alt={`${step.title} trong quy trình`} />
               <p className="reveal-up">{step.caption}</p>
             </div>
           </article>
@@ -361,10 +393,10 @@ function ProcessPage() {
       </section>
 
       <section className="ready-section reveal-up">
-        <h2>Ready to begin?</h2>
+        <h2>Sẵn sàng bắt đầu?</h2>
         <p>Mỗi dự án bắt đầu bằng một cuộc trò chuyện. Hãy kể cho chúng tôi về tầm nhìn của bạn.</p>
         <a className="outline-link" href="/contact">
-          Get in touch <MoveRight size={18} />
+          Liên hệ ngay <MoveRight size={18} />
         </a>
       </section>
       <SiteFooter />
@@ -428,16 +460,16 @@ function ArticleDetailPage() {
 
         <aside className="project-detail-meta reveal-up">
           <div className="meta-item">
-            <span className="meta-label">CATEGORY</span>
+            <span className="meta-label">CHUYÊN MỤC</span>
             <span className="meta-value">Kiến thức</span>
           </div>
           <div className="meta-item">
-            <span className="meta-label">AUTHOR</span>
+            <span className="meta-label">TÁC GIẢ</span>
             <span className="meta-value">Minh Tran</span>
           </div>
           <div className="meta-item">
-            <span className="meta-label">DATE</span>
-            <span className="meta-value">Oct 2026</span>
+            <span className="meta-label">NGÀY</span>
+            <span className="meta-value">Tháng 10, 2026</span>
           </div>
         </aside>
       </section>
@@ -451,7 +483,7 @@ function ArticlesPage() {
   return (
     <>
       <section className="projects-intro reveal-up">
-        <p>Insights</p>
+        <p>Góc nhìn</p>
         <h1>Bài Viết.</h1>
         <p>
           Những suy nghĩ, góc nhìn và nghiên cứu của chúng tôi về kiến trúc, không gian và môi trường sống.
@@ -464,21 +496,21 @@ function ArticlesPage() {
           <strong>Phong thủy kiến trúc hiện đại khác mê tín như thế nào?</strong>
           <em>Kiến thức</em>
           <small>Minh Tran</small>
-          <time>Oct 2026</time>
+          <time>Tháng 10, 2026</time>
         </a>
         <a className="projects-table-row reveal-up" href="/article/phong-thuy-kien-truc">
           <span>02</span>
           <strong>Sự tĩnh lặng của vật liệu thô: Bê tông trần và Gỗ tự nhiên</strong>
           <em>Vật liệu</em>
           <small>Linh Nguyen</small>
-          <time>Sep 2026</time>
+          <time>Tháng 9, 2026</time>
         </a>
         <a className="projects-table-row reveal-up" href="/article/phong-thuy-kien-truc">
           <span>03</span>
           <strong>Thiết kế ánh sáng gián tiếp trong không gian nhiệt đới ẩm</strong>
           <em>Nghiên cứu</em>
           <small>An Hoang</small>
-          <time>Aug 2026</time>
+          <time>Tháng 8, 2026</time>
         </a>
       </section>
 
@@ -493,13 +525,13 @@ function ProjectDetailPage() {
       <section className="project-detail-hero reveal-up">
         <img
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90"
-          alt="Kōan House"
+          alt="Căn hộ hợp phong thủy"
         />
         <div className="project-detail-header-overlay">
-          <div className="project-detail-kicker">RESIDENTIAL · TOKYO, JP · 2026</div>
-          <h1>Kōan House</h1>
+          <div className="project-detail-kicker">PHONG THỦY HIỆN ĐẠI · TP. HỒ CHÍ MINH · 2026</div>
+          <h1>Căn hộ hợp phong thủy</h1>
           <p className="project-detail-lead">
-            A meditative residence that dissolves the boundary between interior and garden. Raw concrete meets shaded timber.
+            Một không gian sống được cân bằng bằng ánh sáng, thông gió, dòng di chuyển và tỷ lệ nội thất.
           </p>
         </div>
       </section>
@@ -507,82 +539,72 @@ function ProjectDetailPage() {
       <section className="project-detail-content">
         <div className="project-detail-main">
           <div className="project-text-block reveal-up">
-            <h3>Overview</h3>
+            <h3>Tổng quan</h3>
             <p>
-              Kōan House is a private residence situated on the edge of a forested hillside in the outskirts of Tokyo. 
-              The brief was simple: a home for two people who wanted to live with less. What emerged was a building that 
-              treats silence as a material — as considered and load-bearing as the concrete that forms its walls.
+              Dự án bắt đầu từ mong muốn cải thiện cảm giác sống trong căn hộ hiện hữu: nhiều ánh sáng hơn,
+              thông gió tốt hơn và bố cục rõ ràng hơn cho sinh hoạt hằng ngày.
             </p>
             <p>
-              The name derives from the Zen concept of a kōan: a paradox with no logical answer, designed to exhaust the 
-              thinking mind and open something quiet beneath. The house is built on a similar logic. Every decision was made by subtraction.
-            </p>
-          </div>
-
-          <div className="project-text-block reveal-up">
-            <h3>Design</h3>
-            <p>
-              The building is a single horizontal volume, low and continuous, set into the slope so that from the road above, 
-              it disappears. The facade is almost entirely closed to the street — a long uninterrupted plane of board-formed 
-              concrete, broken only by a narrow slot of glazing that runs the full width of the upper level.
-            </p>
-            <p>
-              Entry is through a compressed, threshold, a dark corridor that forces the body to slow down before revealing 
-              the main living space. This transition — compression before release — is the defining spatial experience of the house.
-            </p>
-            <p>
-              The interior is organized around a single large room that opens entirely to the garden through floor-to-ceiling glazing. 
-              The boundary between inside and outside is treated as a threshold rather than a barrier. In summer, the glass disappears. 
-              In winter, it frames the garden like a slow painting.
+              Thay vì áp đặt những quy tắc mê tín, chúng tôi đọc hiện trạng bằng phong thủy hiện đại:
+              hướng nắng, hướng gió, điểm tụ sinh hoạt, thói quen gia chủ và cảm giác khi bước vào nhà.
             </p>
           </div>
 
           <div className="project-text-block reveal-up">
-            <h3>Materials</h3>
+            <h3>Giải pháp</h3>
             <p>
-              The material palette was deliberately constrained: raw board-formed concrete, shaded cedar, and polished black stone. 
-              No paint. No plaster. No applied finish. Every surface is what it is.
+              Khu vực vào nhà được tiết chế để tạo khoảng chuyển tiếp nhẹ, phòng khách mở hơn để đón sáng,
+              còn bếp và bàn ăn được tổ chức lại để dòng di chuyển không bị cắt ngang.
             </p>
             <p>
-              The cedar was sourced from a single forest in Nagano Prefecture and allowed to age in place. The intent was not to arrest 
-              time, but to let it show. The concrete was poured in a single continuous process. It is imperfect, retaining the grain of the 
-              wood formwork. The floor reads as a single dark plane.
-            </p>
-          </div>
-
-          <div className="project-text-block reveal-up">
-            <h3>Light</h3>
-            <p>
-              Light was the primary design tool. The building was modeled across every hour of every season to ensure a range of 
-              natural light in each space. The narrow slot window on the upper facade admits morning light to the private spaces. 
-              The main living area, facing south, acts as a sundial. The garden-facing glazing admits afternoon light that deepens as the day progresses.
+              Các điểm lưu trữ được giấu vào hệ tủ phẳng, giúp căn hộ gọn hơn mà vẫn giữ đủ công năng cho gia đình.
             </p>
             <p>
-              There are no overhead lights in the main living space. Illumination comes entirely from indirect sources — light reflected 
-              from surfaces, light borrowed from adjacent rooms. The house grows darker as evening comes. This was intentional.
+              Bảng màu trung tính, gỗ ấm và ánh sáng gián tiếp tạo cảm giác ổn định, dễ nghỉ ngơi và không bị nặng về trang trí.
             </p>
           </div>
 
           <div className="project-text-block reveal-up">
-            <h3>Outcome</h3>
+            <h3>Vật liệu</h3>
             <p>
-              Kōan House received the Japan Institute of Architects Residential Award in 2027. More importantly, its occupants 
-              report that they sleep better than they ever have. Sometimes less is enough.
+              Vật liệu được chọn theo tiêu chí dễ bảo trì, hợp khí hậu và có cảm giác chạm tốt: gỗ veneer,
+              đá nhân tạo, sơn khoáng và vải bọc màu trầm.
+            </p>
+            <p>
+              Mỗi bề mặt được kiểm tra trong phối cảnh 3D trước khi chốt để đảm bảo màu sắc, ánh sáng và ngân sách đi cùng nhau.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Ánh sáng</h3>
+            <p>
+              Ánh sáng tự nhiên được ưu tiên bằng cách mở các vùng sinh hoạt chính, giảm vật cản và dùng rèm hai lớp để điều tiết chói.
+            </p>
+            <p>
+              Hệ đèn gián tiếp giúp căn hộ có nhiều lớp sáng: đủ rõ khi sinh hoạt, đủ dịu khi nghỉ ngơi.
+            </p>
+          </div>
+
+          <div className="project-text-block reveal-up">
+            <h3>Kết quả</h3>
+            <p>
+              Căn hộ trở nên sáng, gọn và dễ sử dụng hơn. Gia chủ có một bản thiết kế rõ ràng,
+              phối cảnh dễ hiểu và lộ trình thi công trọn gói trước khi bắt đầu.
             </p>
           </div>
         </div>
 
         <aside className="project-detail-meta reveal-up">
           <div className="meta-item">
-            <span className="meta-label">TYPE</span>
-            <span className="meta-value">Residential</span>
+            <span className="meta-label">DỊCH VỤ</span>
+            <span className="meta-value">Phong thủy hiện đại</span>
           </div>
           <div className="meta-item">
-            <span className="meta-label">LOCATION</span>
-            <span className="meta-value">Tokyo, JP</span>
+            <span className="meta-label">ĐỊA ĐIỂM</span>
+            <span className="meta-value">TP. Hồ Chí Minh</span>
           </div>
           <div className="meta-item">
-            <span className="meta-label">YEAR</span>
+            <span className="meta-label">NĂM</span>
             <span className="meta-value">2026</span>
           </div>
         </aside>
@@ -599,45 +621,45 @@ function ContactPage() {
       <section className="contact-layout">
         <div className="contact-sidebar">
           <div className="contact-header reveal-up">
-            <p className="section-label">GET IN TOUCH</p>
-            <h1>Contact.</h1>
+            <p className="section-label">LIÊN HỆ</p>
+            <h1>Liên hệ.</h1>
             <p className="contact-intro">
-              New projects, collaborations, and press enquiries — we'd love to hear from you.
+              Dự án mới, tư vấn phong thủy, thiết kế nội thất, phối cảnh 3D hoặc thi công trọn gói — hãy kể cho chúng tôi nhu cầu của bạn.
             </p>
           </div>
 
           <div className="contact-details reveal-up">
             <div className="contact-block">
-              <span className="contact-label">CONTACT</span>
+              <span className="contact-label">LIÊN HỆ</span>
               <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
             </div>
             
             <div className="contact-block">
-              <span className="contact-label">NEW PROJECTS</span>
+              <span className="contact-label">DỰ ÁN MỚI</span>
               <a href="mailto:projects@chamgroup.vn">projects@chamgroup.vn</a>
             </div>
 
             <div className="contact-block">
-              <span className="contact-label">PRESS</span>
+              <span className="contact-label">BÁO CHÍ</span>
               <a href="mailto:press@chamgroup.vn">press@chamgroup.vn</a>
             </div>
 
             <div className="contact-block">
-              <span className="contact-label">PHONE</span>
+              <span className="contact-label">ĐIỆN THOẠI</span>
               <a href="tel:+4930000000">+49 30 000 000</a>
             </div>
 
             <div className="contact-block">
-              <span className="contact-label">ADDRESS</span>
+              <span className="contact-label">ĐỊA CHỈ</span>
               <address>
-                CHÂM GROUP<br />
+                CHẠM GROUP<br />
                 Quận 1, TP. Hồ Chí Minh<br />
                 Việt Nam
               </address>
             </div>
 
             <div className="contact-block">
-              <span className="contact-label">SOCIAL</span>
+              <span className="contact-label">MẠNG XÃ HỘI</span>
               <div className="contact-social-links">
                 <a href="/">X</a>
                 <a href="/">LINKEDIN</a>
@@ -648,62 +670,61 @@ function ContactPage() {
         </div>
 
         <div className="contact-map reveal-up">
-          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80" alt="Map of Ho Chi Minh City" className="map-image" style={{filter: 'grayscale(100%) contrast(1.2)'}} />
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80" alt="Bản đồ TP. Hồ Chí Minh" className="map-image" style={{filter: 'grayscale(100%) contrast(1.2)'}} />
           <div className="map-landmark">
             <div className="landmark-header">
-              <span className="landmark-label">LANDMARK</span>
+              <span className="landmark-label">VỊ TRÍ</span>
               <button className="landmark-close">×</button>
             </div>
-            <strong>CHÂM GROUP</strong>
+            <strong>CHẠM GROUP</strong>
             <p>Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
-            <small>📍 Ho Chi Minh City</small>
+            <small>TP. Hồ Chí Minh</small>
           </div>
         </div>
       </section>
 
       <section className="close-grid" style={{borderTop: '1px solid var(--line)'}}>
         <div className="close-cell close-process">
-          <h2>Process</h2>
-          <p>We design from the inside out — understanding how people move, gather, and rest before the first line is drawn.</p>
-          <p>Architecture is not the making of objects. It is the making of experience.</p>
+          <h2>Quy trình</h2>
+          <p>Chúng tôi bắt đầu bằng cách gia chủ sống, nghỉ ngơi, làm việc và di chuyển trong từng căn phòng.</p>
+          <p>Mỗi quyết định về phong thủy, vật liệu, phối cảnh và thi công đều hướng đến một không gian dễ ở.</p>
         </div>
 
         <div className="close-cell close-services">
-          <h2>Services</h2>
+          <h2>Dịch vụ</h2>
           <ul>
-            <li>Architecture</li>
-            <li>Interior Design</li>
-            <li>Landscape</li>
-            <li>Exhibition Design</li>
+            {services.map((service) => (
+              <li key={service.title}>{service.title}</li>
+            ))}
           </ul>
         </div>
 
         <div className="close-cell close-recognition">
-          <h2>Recognition</h2>
+          <h2>Dấu mốc</h2>
           <div className="stat-grid">
-            <span><strong>18</strong>Projects</span>
-            <span><strong>12</strong>Years</span>
-            <span><strong>21</strong>Awards</span>
-            <span><strong>5</strong>Countries</span>
+            <span><strong>18</strong>Dự án</span>
+            <span><strong>12</strong>Năm</span>
+            <span><strong>21</strong>Giải thưởng</span>
+            <span><strong>05</strong>Thành phố</span>
           </div>
         </div>
 
         <div className="close-cell close-contact">
-          <h2>Contact</h2>
+          <h2>Liên hệ</h2>
           <address>
             <a href="mailto:hello@chamgroup.vn">hello@chamgroup.vn</a>
             <a href="tel:+842800000000">+84 28 0000 0000</a>
             <span>Quận 1, TP. Hồ Chí Minh</span>
           </address>
           <a className="new-enquiry" href="mailto:hello@chamgroup.vn">
-            New enquiries <MoveRight size={18} />
+            Gửi yêu cầu <MoveRight size={18} />
           </a>
         </div>
       </section>
 
       <section className="footer-bottom" style={{borderTop: '1px solid var(--line)'}}>
-        <span>CHÂM GROUP © 2026</span>
-        <span>Architecture & Interior Design</span>
+        <span>CHẠM GROUP © 2026</span>
+        <span>Phong thủy · Nội thất · CGI · Thi công</span>
         <span>
           <a href="/">X</a>
           <a href="/">LinkedIn</a>
@@ -718,8 +739,8 @@ function StudioPage() {
   return (
     <>
       <section className="studio-intro">
-        <p>About</p>
-        <h1>The Studio.</h1>
+        <p>Giới thiệu</p>
+        <h1>Về CHAM.</h1>
         <p>
           Thành lập tại Việt Nam, CHAM là studio kiến trúc và nội thất tạo nên
           những không gian tôn trọng nơi chốn, khí hậu và nhịp sống của con người.
@@ -730,11 +751,11 @@ function StudioPage() {
         <div className="studio-image">
           <img
             src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=90"
-            alt="Architecture studio workspace"
+            alt="Không gian làm việc thiết kế nội thất"
           />
         </div>
         <div className="studio-approach-copy">
-          <p>Approach</p>
+          <p>Cách tiếp cận</p>
           <p>
             Chúng tôi thiết kế từ bên trong ra ngoài — hiểu cách con người di chuyển,
             tụ họp và nghỉ ngơi trước khi đường nét đầu tiên xuất hiện.
@@ -751,7 +772,7 @@ function StudioPage() {
       </section>
 
       <section className="statement studio-statement">
-        <p>Philosophy</p>
+        <p>Tư duy thiết kế</p>
         <blockquote>
           “Chúng tôi không xây biểu tượng.
           Chúng tôi kiến tạo <em>ngưỡng chạm</em> — khoảng giữa của đến,
@@ -762,26 +783,16 @@ function StudioPage() {
 
       <section className="studio-services">
         <div className="studio-section-heading">
-          <p>Services</p>
-          <h2>What we do.</h2>
+          <p>Dịch vụ</p>
+          <h2>Chúng tôi làm gì.</h2>
         </div>
         <div className="studio-service-grid">
-          <article>
-            <h3>Architecture</h3>
-            <p>Từ ý niệm đến hoàn thiện — nhà ở, văn hóa và thương mại được thiết kế với độ chính xác và cảm xúc.</p>
-          </article>
-          <article>
-            <h3>Interior Design</h3>
-            <p>Câu chuyện không gian mở ra qua vật liệu, ánh sáng và tỷ lệ. Mỗi bề mặt đều được cân nhắc.</p>
-          </article>
-          <article>
-            <h3>Landscape</h3>
-            <p>Tư duy ở tầng mặt đất: sân trong, vườn, ngưỡng chuyển tiếp và khoảng thở giữa các khối nhà.</p>
-          </article>
-          <article>
-            <h3>Hospitality Concept</h3>
-            <p>Định hình trải nghiệm lưu trú, nhịp vận hành và ký ức không gian cho điểm đến.</p>
-          </article>
+          {services.map((service) => (
+            <article key={service.title}>
+              <h3>{service.title}</h3>
+              <p>{service.body}</p>
+            </article>
+          ))}
         </div>
         <div className="studio-stats">
           <span><strong>18</strong>Dự án</span>
@@ -793,8 +804,8 @@ function StudioPage() {
 
       <section className="studio-team">
         <div className="studio-section-heading">
-          <p>Team</p>
-          <h2>The people behind the work.</h2>
+          <p>Đội ngũ</p>
+          <h2>Người đồng hành cùng không gian của bạn.</h2>
         </div>
         <div className="team-grid">
           {teamMembers.map((member) => (
@@ -999,22 +1010,25 @@ function App() {
         <div className="cursor-inner" />
       </div>
       <header className="site-header">
-        <a className="brand" href="/" aria-label="CHAM GROUP home">
-          <span>CHAM</span>
-          <small>GROUP</small>
+        <a className="brand" href="/" aria-label="Trang chủ CHAM GROUP">
+          <img src="/assets/logo-cham.png" alt="" aria-hidden="true" />
+          <span>
+            <strong>CHAM</strong>
+            <small>GROUP</small>
+          </span>
         </a>
-        <nav className="nav-links" aria-label="Primary navigation">
-          <a className={!isStudioPage && !isProcessPage && !isProjectsPage && !isContactPage && !isProjectDetailPage && !isArticlesPage && !isArticleDetailPage ? "active" : ""} href="/">Index</a>
-          <a className={isStudioPage ? "active" : ""} href="/studio">Studio</a>
-          <a className={isProcessPage ? "active" : ""} href="/process">Process</a>
-          <a className={isProjectsPage || isProjectDetailPage ? "active" : ""} href="/projects">Projects</a>
+        <nav className="nav-links" aria-label="Điều hướng chính">
+          <a className={!isStudioPage && !isProcessPage && !isProjectsPage && !isContactPage && !isProjectDetailPage && !isArticlesPage && !isArticleDetailPage ? "active" : ""} href="/">Trang chủ</a>
+          <a className={isStudioPage ? "active" : ""} href="/studio">Về CHAM</a>
+          <a className={isProcessPage ? "active" : ""} href="/process">Quy trình</a>
+          <a className={isProjectsPage || isProjectDetailPage ? "active" : ""} href="/projects">Dự án</a>
           <a className={isArticlesPage || isArticleDetailPage ? "active" : ""} href="/articles">Bài Viết</a>
-          <a className={isContactPage ? "active" : ""} href="/contact">Contact</a>
+          <a className={isContactPage ? "active" : ""} href="/contact">Liên hệ</a>
         </nav>
         <button
           className="menu-button"
           aria-expanded={menuOpen}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-label={menuOpen ? "Đóng menu" : "Mở menu"}
           onClick={() => setMenuOpen((open) => !open)}
         >
           <Menu size={20} />
@@ -1024,31 +1038,34 @@ function App() {
       <button
         className="desktop-menu-button"
         aria-expanded={menuOpen}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-label={menuOpen ? "Đóng menu" : "Mở menu"}
         onClick={() => setMenuOpen((open) => !open)}
       >
         <Menu size={22} />
       </button>
 
-      <nav className={`main-menu ${menuOpen ? "main-menu-open" : ""}`} aria-label="Main menu">
+      <nav className={`main-menu ${menuOpen ? "main-menu-open" : ""}`} aria-label="Menu chính">
         <div className="menu-brand">
-          <span>CHAM</span>
-          <small>Architecture Studio</small>
+          <img src="/assets/logo-cham.png" alt="" aria-hidden="true" />
+          <span>
+            <strong>CHAM</strong>
+            <small>Studio dịch vụ nội thất</small>
+          </span>
         </div>
-        <button className="menu-close" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
-          Close
+        <button className="menu-close" aria-label="Đóng menu" onClick={() => setMenuOpen(false)}>
+          Đóng
         </button>
         <div className="menu-links">
-          <a href="/" onClick={() => setMenuOpen(false)}>Index</a>
-          <a href="/studio" onClick={() => setMenuOpen(false)}>Studio</a>
-          <a href="/process" onClick={() => setMenuOpen(false)}>Process</a>
-          <a href="/projects" onClick={() => setMenuOpen(false)}>Projects</a>
+          <a href="/" onClick={() => setMenuOpen(false)}>Trang chủ</a>
+          <a href="/studio" onClick={() => setMenuOpen(false)}>Về CHAM</a>
+          <a href="/process" onClick={() => setMenuOpen(false)}>Quy trình</a>
+          <a href="/projects" onClick={() => setMenuOpen(false)}>Dự án</a>
           <a href="/articles" onClick={() => setMenuOpen(false)}>Bài Viết</a>
-          <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a href="/contact" onClick={() => setMenuOpen(false)}>Liên hệ</a>
         </div>
         <div className="menu-footer">
           <span>CHAM GROUP © 2026</span>
-          <span>Architecture & Interior Design</span>
+          <span>Phong thủy · Nội thất · CGI · Thi công</span>
         </div>
       </nav>
 
@@ -1071,37 +1088,44 @@ function App() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <div>
-            <div className="hero-kicker">Architecture & Interior · Est. 2026</div>
+            <div className="hero-kicker">Phong thủy · Nội thất · CGI · Thi công</div>
             <h1>
-              Space
-              <span>as</span>
-              Practice.
+              Không gian
+              <span>để</span>
+              sống.
             </h1>
           </div>
           <a className="text-link" href="/projects">
-            All projects <ArrowUpRight size={18} />
+            Tất cả dự án <ArrowUpRight size={18} />
           </a>
         </div>
         <div className="hero-image">
-          <img src={projects[0].image} alt="CHAM Group hospitality destination" />
+          <img src={projects[0].image} alt="Không gian dự án CHAM Group" />
           <a className="hero-caption" href="/project/koan-house">
-            <span>Koan House</span>
-            <span>Residential</span>
+            <span>Căn hộ hợp phong thủy</span>
+            <span>Phong thủy hiện đại</span>
             <span>2026</span>
           </a>
         </div>
       </section>
 
-      <section className="project-index" id="projects" aria-label="All projects">
-        <div className="section-label">All projects</div>
+      <section className="project-index" id="projects" aria-label="Tất cả dự án">
         <div className="project-list">
-          {projects.map((project) => (
+          {homeProjectRows.map((project) => (
             <a className="project-row" href="/project/koan-house" key={project.name}>
               <span>{project.number}</span>
-              <strong>{project.name}</strong>
-              <em>{project.type}</em>
-              <small>{project.place}</small>
+              <strong>
+                {project.name}
+                {project.tags.length > 0 && (
+                  <span className="project-tags" aria-hidden="true">
+                    {project.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </span>
+                )}
+              </strong>
               <small>{project.year}</small>
+              <MoveRight className="project-row-arrow" size={22} aria-hidden="true" />
             </a>
           ))}
         </div>
@@ -1124,14 +1148,14 @@ function App() {
               <p>{project.body}</p>
             </div>
             <a className="outline-link" href="/project/koan-house" data-featured-button>
-              Explore project <MoveRight size={18} />
+              Xem dịch vụ <MoveRight size={18} />
             </a>
           </div>
         </section>
       ))}
 
       <section className="statement" id="studio">
-        <p>Philosophy</p>
+        <p>Tư duy thiết kế</p>
         <blockquote>
           “Chúng tôi không tạo nên những công trình để đứng yên.
           Chúng tôi kiến tạo <em>ngưỡng chạm</em> — nơi con người bước vào,
@@ -1142,7 +1166,7 @@ function App() {
 
       <section className="process" id="process">
         <div className="process-heading">
-          <p>Process</p>
+          <p>Quy trình</p>
           <h2>Từ lắng nghe đến đời sống.</h2>
         </div>
         <div className="process-grid">
@@ -1157,7 +1181,7 @@ function App() {
       </section>
 
       <section className="selected">
-        <h2>Selected Works</h2>
+        <h2>Dự án chọn lọc</h2>
         <div className="selected-gallery">
           {selectedWorks.map((work) => (
             <article className={`work-pair ${work.reverse ? "work-pair-reverse" : ""}`} key={work.title}>
@@ -1169,7 +1193,7 @@ function App() {
                 </span>
               </a>
               <a className="work-tile work-tile-small" href="/project/koan-house">
-                <img src={work.smallImage} alt={`${work.title} detail`} />
+                <img src={work.smallImage} alt={`Chi tiết ${work.title}`} />
                 <span className="work-caption">
                   <strong>{work.title}</strong>
                   <small>{work.meta}</small>
@@ -1184,15 +1208,15 @@ function App() {
         <h2>Bài Viết</h2>
         <a href="/article/phong-thuy-kien-truc" className="press-article">
           <p>“Phong thủy kiến trúc hiện đại khác mê tín như thế nào? Sự cân bằng của ánh sáng và tỷ lệ không gian là nền tảng.”</p>
-          <span>Oct 2026<br />Kiến thức</span>
+          <span>Tháng 10, 2026<br />Kiến thức</span>
         </a>
         <a href="/article/phong-thuy-kien-truc" className="press-article">
           <p>“Sự tĩnh lặng của vật liệu thô: Cách bê tông trần và gỗ tự nhiên tạo nên cảm giác thuộc về.”</p>
-          <span>Sep 2026<br />Vật liệu</span>
+          <span>Tháng 9, 2026<br />Vật liệu</span>
         </a>
         <a href="/article/phong-thuy-kien-truc" className="press-article">
           <p>“Thiết kế ánh sáng gián tiếp: Mang nhịp sinh học tự nhiên vào không gian nhiệt đới ẩm.”</p>
-          <span>Aug 2026<br />Nghiên cứu</span>
+          <span>Tháng 8, 2026<br />Nghiên cứu</span>
         </a>
         <div style={{ marginTop: '40px', padding: '0 clamp(24px, 3vw, 44px)', paddingBottom: '60px' }}>
           <a className="outline-link" href="/articles">
